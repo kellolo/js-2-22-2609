@@ -1,0 +1,14 @@
+1) инициализируем проект
+npm init -y
+
+2) устанавливаем сборщик
+npm i webpack webpack-cli -D
+
+
+// i - install
+// -D == --save-dev (1 - dependencies - зависимости прооекта 2 - devDependencies - инструменты разработки (-D))
+
+3) создать скрипт в пак.жсон для запуска сборщика
+"build": "webpack"
+
+(для запуска скрипта использ команду NPM RUN SCRIPTNAME)
