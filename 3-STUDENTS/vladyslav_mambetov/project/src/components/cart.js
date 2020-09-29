@@ -12,7 +12,7 @@
 //     });
 // }, 300);
 
-let basket = {
+export default {
     items: [],
     shown: false,
     container: null,
@@ -183,4 +183,4 @@ let basket = {
     // },
 };
 
-basket.init();
+// basket.init();

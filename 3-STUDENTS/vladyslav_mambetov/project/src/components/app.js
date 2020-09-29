@@ -1,4 +1,4 @@
-function displayMenu() {
+export default () => {
     var x = document.getElementById("mega_menu");
     if (x.style.display === "block") {
         x.style.display = "none";

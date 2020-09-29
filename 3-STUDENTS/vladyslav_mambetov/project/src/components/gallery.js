@@ -50,7 +50,7 @@ setTimeout(() => {
 
     
 
-    let gallery = {
+export default {
         main: null,
         carousel: null,
         items: [],
@@ -107,6 +107,6 @@ setTimeout(() => {
             this.carousel.innerHTML = str;
         }
     }
- gallery.init();
+//  gallery.init();
 
 
