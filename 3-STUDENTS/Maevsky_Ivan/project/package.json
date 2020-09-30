@@ -1,0 +1,24 @@
+{
+  "name": "js-2-22-2609",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lek1z/js-2-22-2609.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lek1z/js-2-22-2609/issues"
+  },
+  "homepage": "https://github.com/Lek1z/js-2-22-2609#readme",
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
+}
