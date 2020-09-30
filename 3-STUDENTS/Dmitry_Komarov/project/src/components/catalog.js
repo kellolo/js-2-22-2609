@@ -24,7 +24,7 @@ function createItemTemplate(item) {
 }
 
 
-let catalog = {
+export default {
     container: null,
     url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json',
     items: [],
