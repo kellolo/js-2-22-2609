@@ -24,9 +24,9 @@ function createItemTemplate(item) {
 }
 
 
-let catalog = {
+export default {
     container: null,
-    url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json',
+    url: 'https://raw.githubusercontent.com/Timon4eg/static/master/JSON/catalog.json',
     items: [],
     basket: null,
     init () {

@@ -12,12 +12,12 @@
 //     });
 // }, 300);
 
-let basket = {
+export default {
     items: [],
     shown: false,
     container: null,
     itemsContainer: null,
-    url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/basket.json',
+    url: 'https://raw.githubusercontent.com/Timon4eg/static/master/JSON/basket.json',
     init () {
         this.container = document.querySelector('#basket');
         this.itemsContainer = document.querySelector('#basket-items');
