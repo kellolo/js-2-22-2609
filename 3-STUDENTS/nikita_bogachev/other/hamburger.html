@@ -110,15 +110,22 @@
             };
             calculatePrice(){
                 document.querySelector('.events').addEventListener('click', evt => {
-                    if (evt.target.name == 'price')
-                   this.stuffing.reduce( (sum,elem) => {console.log(sum+=elem.price*elem.count)},0)
+                    if (evt.target.name == 'price'){
+                    let sum = 0;
+                    this.stuffing.forEach( (elem) => {(sum+=elem.price*elem.count)}) 
+                    console.log(sum)}
+                  
                 })
                 
             };
             caclculateCalories(){
-
-                this.stuffing.reduce((sum,elem) => {sum+=elem.calories},0)
-            }
+                document.querySelector('.events').addEventListener('click', evt => {
+                    if (evt.target.name == 'calories'){
+                    let sum = 0;
+                    this.stuffing.forEach( (elem) => {(sum+=elem.calories*elem.count)}) 
+                    console.log(sum)}
+            })
+        };
 
                 // Добавить добавку }
             /* removeTopping(topping) { }// Убрать добавку }
