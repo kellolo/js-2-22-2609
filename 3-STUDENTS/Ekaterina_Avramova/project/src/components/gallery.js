@@ -50,7 +50,7 @@ setTimeout(() => {
 
     
 
-    export default {
+    let gallery = {
         main: null,
         carousel: null,
         items: [],
