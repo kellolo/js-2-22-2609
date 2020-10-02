@@ -1,0 +1,50 @@
+[
+    {
+        "productName":"MANGO PEOPLE T-SHIRT",
+        "productPrice":52,
+        "productImg":"https://raw.githubusercontent.com/Eliseev88/geekbrains/master/catalog/catalog_1.png",
+        "productId":"prod_0"
+    },
+    {
+        "productName":"BANANA PEOPLE T-SHIRT",
+        "productPrice":53,
+        "productImg":"https://raw.githubusercontent.com/Eliseev88/geekbrains/master/catalog/catalog_2.png",
+        "productId":"prod_1"
+    },
+    {
+        "productName":"STRAWBERRY PEOPLE T-SHIRT",
+        "productPrice":55,
+        "productImg":"https://raw.githubusercontent.com/Eliseev88/geekbrains/master/catalog/catalog_3.png",
+        "productId":"prod_2"
+    },
+    {
+        "productName":"ORANGE PEOPLE T-SHIRT",
+        "productPrice":67,
+        "productImg":"https://raw.githubusercontent.com/Eliseev88/geekbrains/master/catalog/catalog_4.png",
+        "productId":"prod_3"
+    },
+    {
+        "productName":"PUMKIN PEOPLE T-SHIRT",
+        "productPrice":69,
+        "productImg":"https://raw.githubusercontent.com/Eliseev88/geekbrains/master/catalog/catalog_5.png",
+        "productId":"prod_4"
+    },
+    {
+        "productName":"PINEAPPLE PEOPLE T-SHIRT",
+        "productPrice":94,
+        "productImg":"https://raw.githubusercontent.com/Eliseev88/geekbrains/master/catalog/catalog_6.png",
+        "productId":"prod_5"
+    },
+    {
+        "productName":"CUCUMBER PEOPLE T-SHIRT",
+        "productPrice":23,
+        "productImg":"https://raw.githubusercontent.com/Eliseev88/geekbrains/master/catalog/catalog_7.png",
+        "productId":"prod_6"
+    },
+    {
+        "productName":"TOMATO PEOPLE T-SHIRT",
+        "productPrice":45,
+        "productImg":"https://raw.githubusercontent.com/Eliseev88/geekbrains/master/catalog/catalog_8.png",
+        "productId":"prod_7"
+    }
+]
