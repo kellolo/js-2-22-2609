@@ -1,5 +1,5 @@
 // import displayMenu from './app.js'
-import app from './cart.js'
+import app from './basket.js'
 import catalog from './catalog.js'
 // import gallery from './gallery.js'
 

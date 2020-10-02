@@ -29,13 +29,13 @@ export default {
     url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json',
     items: [],
     basket: null,
-    init () {
+    init(basket) {
         this.container = document.querySelector('#catalog');
+        this.basket = basket;
         this.getData(this.url)
             .then(items => {this.items = items})
             .finally(() => {
                 this._render();
-                this.basket = basket; //ссылка на объект basket из файла cart.js
                 this.handleActions();
             })
     },
