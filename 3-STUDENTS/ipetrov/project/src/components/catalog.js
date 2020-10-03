@@ -24,24 +24,30 @@ function createItemTemplate(item) {
 }
 
 
-export default {
-    container: null,
-    url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json',
-    items: [],
-    basket: null,
-    init () {
+export default class Catalog {
+    constructor (basket) { 
+        this.container = null;
+        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json';
+        this.items = [];
+        this.basket = null;
+        this._init(basket);
+    }
+
+    _init (basket) {
         this.container = document.querySelector('#catalog');
+        this.basket = basket; //ссылка на объект basket из файла cart.js
         this.getData(this.url)
             .then(items => {this.items = items})
             .finally(() => {
                 this._render();
-                this.basket = basket; //ссылка на объект basket из файла cart.js
                 this.handleActions();
             })
-    },
+    }
+
     getData(url) {
         return fetch(url).then(data => data.json())
-    },
+    }
+
     handleActions() {
         this.container.addEventListener('click', evt => {
             if (evt.target.name == 'add') {
@@ -57,7 +63,8 @@ export default {
                 this.basket.add(newProd);
             }
         })
-    },
+    }
+
     _render() {
         let htmlStr = '';
         this.items.forEach(item => {
