@@ -49,19 +49,21 @@ export default class Catalog {
 
     handleActions() {
         this.container.addEventListener('click', evt => {
-            if (evt.target.name == 'add') {
-                let datas = evt.target.dataset;
-
-                let newProd = {
-                    productId: datas.id,
-                    productPrice: +datas.price,
-                    productName: datas.name,
-                    productImg: datas.image
+            evt.path.forEach(item => {
+                if (item.name == 'add') {
+                    let datas = item.dataset;
+    
+                    let newProd = {
+                        productId: datas.id,
+                        productPrice: +datas.price,
+                        productName: datas.name,
+                        productImg: datas.image
+                    }
+    
+                    this.basket.add(newProd);
                 }
-
-                this.basket.add(newProd);
-            }
-        })
+            });
+        });
     }
 
     _render() {
