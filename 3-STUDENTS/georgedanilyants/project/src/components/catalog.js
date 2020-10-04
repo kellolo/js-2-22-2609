@@ -24,28 +24,75 @@ function createItemTemplate(item) {
 }
 
 
-export default {
-    container: null,
-    url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json',
-    items: [],
-    basket: null,
-    init () {
-        this.container = document.querySelector('#catalog');
-        this.getData(this.url)
+// export default {
+//     container: null,
+//     url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json',
+//     items: [],
+//     basket: null,
+//     init(basket) {
+//         this.container = document.querySelector('#catalog');
+//         this.basket = basket;
+//         this.getData(this.url)
+//             .then(items => {this.items = items})
+//             .finally(() => {
+//                 this._render();
+//                 this.handleActions();
+//             })
+//     },
+//     getData(url) {
+//         return fetch(url).then(data => data.json())
+//     },
+//     handleActions() {
+//         this.container.addEventListener('click', evt => {
+//             if (evt.target.name == 'add' || evt.target.parentNode.name == 'add') {
+//                 let datas = evt.target.name == 'add' ? evt.target.dataset : evt.target.parentNode.dataset;
+
+//                 let newProd = {
+//                     productId: datas.id,
+//                     productPrice: +datas.price,
+//                     productName: datas.name,
+//                     productImg: datas.image
+//                 }
+
+//                 this.basket.add(newProd);
+//             }
+//         })
+//     },
+//     _render() {
+//         let htmlStr = '';
+//         this.items.forEach(item => {
+//             htmlStr += createItemTemplate(item);
+//         });
+//         this.container.innerHTML = htmlStr;
+//     }
+// }
+
+export default class Catalog{
+    constructor(basket, url = '/catalog.json', container ='#catalog') {
+        this.container = document.querySelector(container);
+        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON' + url;
+        this.items = [];
+        this.basket = basket;
+        this._init();
+    }
+    
+    _init(basket) {
+        this._getData(this.url)
             .then(items => {this.items = items})
             .finally(() => {
                 this._render();
-                this.basket = basket; //ссылка на объект basket из файла cart.js
-                this.handleActions();
+                this._handleActions();
             })
-    },
-    getData(url) {
+    }
+
+    _getData(url) {
         return fetch(url).then(data => data.json())
-    },
-    handleActions() {
+    }
+
+    _handleActions() {
         this.container.addEventListener('click', evt => {
-            if (evt.target.name == 'add') {
-                let datas = evt.target.dataset;
+            if (evt.target.name == 'add' || evt.target.parentNode.name == 'add') {
+                let datas = evt.target.name == 'add' ? evt.target.dataset : evt.target.parentNode.dataset;
 
                 let newProd = {
                     productId: datas.id,
@@ -57,7 +104,8 @@ export default {
                 this.basket.add(newProd);
             }
         })
-    },
+    }
+
     _render() {
         let htmlStr = '';
         this.items.forEach(item => {
@@ -66,5 +114,3 @@ export default {
         this.container.innerHTML = htmlStr;
     }
 }
-
-
