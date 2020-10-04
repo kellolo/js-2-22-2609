@@ -50,13 +50,16 @@ function getMainImgIndex() {
 
 
 
-export default {
-    main: null,
-    carousel: null,
-    items: [],
-    baseUrl: 'https://raw.githubusercontent.com/Eliseev88/geekbrains/master/pr_omega/src/layout/catalog.json',
-
-    init() {
+export default class Gallery {
+    constructor(name) {
+        this.name = name;
+        this.main = null;
+        this.carousel = null;
+        this.items = [];
+        this.baseUrl = 'https://raw.githubusercontent.com/Eliseev88/geekbrains/master/pr_omega/src/layout/catalog.json';
+        this._init();
+    }
+    _init() {
         this.main = document.querySelector('#main-pic');
         this.carousel = document.querySelector('#carousel');
         this.getImages();
@@ -64,7 +67,7 @@ export default {
             this.render();
             this.handleActions();
         }, 200);
-    },
+    }
 
     getImages() {
         fetch(this.baseUrl)
@@ -72,7 +75,7 @@ export default {
             .then(items => {
                 this.items = items.map(el => el.productImg);
             });
-    },
+    }
     handleActions() {
         let currentUrlImg = this.main.src;
         this.carousel.addEventListener('click', evt => {
@@ -94,10 +97,10 @@ export default {
         //         return;
         //     }
         // });
-    },
+    }
     changeMainImg(url) {
         this.main.src = url;
-    },
+    }
     render() {
         this.main.src = this.items[0];
         let str = '';
@@ -107,6 +110,5 @@ export default {
         this.carousel.innerHTML = str;
     }
 }
-gallery.init();
 
 
