@@ -16,6 +16,7 @@ export default class Basket {
 
     constructor() {
         this.items = [];
+        this.goodCost = 0;
         this.shown = false;
         this.container = document.querySelector('#basket');
         this.itemsContainer = document.querySelector('#basket-items');
@@ -54,6 +55,8 @@ export default class Basket {
                     </div>`;
         });
         this.itemsContainer.innerHTML = str;
+        this.calculateGoodsCost();
+        document.querySelector('#total-sum').innerText = '$' + this.goodCost;
     }
     
     _handleActions() {
@@ -78,6 +81,13 @@ export default class Basket {
                 find.amount++;
             }
         this._render();
+    }
+
+    calculateGoodsCost () {
+        this.goodCost = 0;
+        this.items.forEach(item => {
+                this.goodCost += item.productPrice * item.amount;
+        });
     }
 
     _remove(id) {
