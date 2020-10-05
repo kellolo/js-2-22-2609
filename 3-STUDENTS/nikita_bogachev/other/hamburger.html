@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="size">
+            <button name="small" data-price="50" data-calories="20">Small Hamburger</button>
+            <button name="big" data-price="100" data-calories="40">Big Hamburger</button>
+        </div>
+        <div class="topping">
+            <button name="topping" data-num="0" data-name="chess">chess</button>
+            <button name="topping" data-num="1" data-name="green">grenn</button>
+            <button name="topping" data-num="2" data-name="potatto">potatte</button>
+        </div>
+        <div class="events">
+            <button name="list">Ваши топинги</button>
+            <button name="burg"> Ваш бургер</button>
+            <button name="price">Цена</button>
+            <button name="calories">Калории</button>
+        </div>
+        <div class="itog">
+           
+            <div class="list-topping"></div>
+            <div class="size-burger"></div>
+            <div class="stuffing-burger"></div>
+            <div class="price"></div>
+            <div class="calories"></div>
+        </div>
+    </div>
+    
+    
+    
+    <script>
+     
+        const hamburger = {
+            big: {
+                price:100,
+                calories:40
+            },
+            small: {
+                price:50,
+                calories:20
+            }
+        }
+        const topping = [
+             {
+                titleTopping: 'chess',
+                price:10,
+                calories:20,
+                count:1
+            },
+            {
+                titleTopping: 'green',
+                price:20,
+                calories:5,
+                count:1
+            },
+            {   titleTopping: 'potatto',
+                price:15,
+                calories:10,
+                count:1
+            }
+        ]
+
+
+        class Hamburger {
+            constructor(size) { 
+                this.size = size;
+                this.stuffing = [];
+                this.container = null;
+                this._init();
+                
+             }
+             _init(){
+                this.container = document.querySelector('.itog');
+                this.addTopping();
+                this.getSize();
+                this.getToppings();
+                this.calculatePrice();
+                this.caclculateCalories();
+
+             }
+            getSize() {
+                document.querySelector('.events').addEventListener('click', evt => {
+                    if(evt.target.name == "burg"){
+                        
+                        console.log(this);
+                    } 
+            })};
+            addTopping() { 
+                document.querySelector('.topping').addEventListener('click', evt => {
+                    if(evt.target.name == 'topping'){
+                        let find = this.stuffing.find(el => el.titleTopping === evt.target.dataset.name )
+                            if(!find){this.stuffing.push({...topping[evt.target.dataset.num]})
+                            } else {  
+                           find.count++}
+                        } 
+                    }
+                )
+            };
+            getToppings() {
+                document.querySelector('.events').addEventListener('click', (evt) => {
+                    if (evt.target.name == 'list')
+                    this.stuffing.forEach(elem => {console.log(elem.titleTopping, elem.count)})
+                })
+            };
+            calculatePrice(){
+                document.querySelector('.events').addEventListener('click', evt => {
+                    if (evt.target.name == 'price'){
+                    let sum = 0;
+                    this.stuffing.forEach( (elem) => {(sum+=elem.price*elem.count)}) 
+                    console.log(sum)}
+                  
+                })
+                
+            };
+            caclculateCalories(){
+                document.querySelector('.events').addEventListener('click', evt => {
+                    if (evt.target.name == 'calories'){
+                    let sum = 0;
+                    this.stuffing.forEach( (elem) => {(sum+=elem.calories*elem.count)}) 
+                    console.log(sum)}
+            })
+        };
+
+                // Добавить добавку }
+            /* removeTopping(topping) { }// Убрать добавку }
+            getToppings(topping) {   }// Получить список добавок }
+            getSize() {              }// Узнать размер гамбургера }
+            getStuffing() {          }// Узнать начинку гамбургера }
+            calculatePrice() {       }// Узнать цену }
+            calculateCalories() {    }// Узнать калорийность } */
+            
+
+
+
+
+
+
+        }
+        document.querySelector('.size').addEventListener('click', evt => {
+            new Hamburger(evt.target.name)
+        })
+        
+        
+    </script>
+</body>
+</html>
