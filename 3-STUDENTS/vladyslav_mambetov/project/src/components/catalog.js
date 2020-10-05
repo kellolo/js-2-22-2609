@@ -26,9 +26,9 @@ function createItemTemplate(item) {
 
 export default class Catalog {
     
-    constructor(basket) {
-        this.container = document.querySelector('#catalog');
-        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json';
+    constructor(basket, url = '/catalog.json', container = '#catalog') {
+        this.container = document.querySelector(container);
+        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON' + url;
         this.items = [];
         this.basket = basket;
         this._init();

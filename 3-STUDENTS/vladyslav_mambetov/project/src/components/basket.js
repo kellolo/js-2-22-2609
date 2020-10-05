@@ -14,13 +14,13 @@
 
 export default class Basket {
 
-    constructor() {
+    constructor(url = '/basket.json', container = '#basket') {
         this.items = [];
         this.goodCost = 0;
         this.shown = false;
-        this.container = document.querySelector('#basket');
+        this.container = document.querySelector(container);
         this.itemsContainer = document.querySelector('#basket-items');
-        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON/basket.json';
+        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON' + url;
         this._init();
     }
 
