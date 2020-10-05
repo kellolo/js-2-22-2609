@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <style>
+      #calculator {
+    text-align: center;
+  }
+
+  #submit {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: green;
+    border: 0px solid #998675;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-top: 40px;
+  }
+
+  #submit:hover {
+    color: #998675;
+    background-color: greenyellow;
+  }
+
+  #submit:focus {
+    outline: none;
+  }
+
+  #count {
+    font-size: 1.5em;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="calculator">
+    <label for="size"> Размер:</label>
+    <select id="size" name="size">
+      <option value="small">Маленький</option>
+      <option value="large">Большой</option>
+    </select>
+    <label for="sauce"> Соус:</label>
+    <select id="sauce" name="sauce">
+      <option value="cheese">Сыр</option>
+      <option value="salad">Салат</option>
+      <option value="potatoes">Картофель</option>
+    </select>
+    <label> Приправа:
+        <input type="checkbox" value="flavoring" id="flavoring_id">
+    </label>
+    <label> Майонез:
+        <input type="checkbox" value="mayo" id="mayo_id">
+    </label>
+    <button id="submit">Рассчитать</button>
+    <div id="count"></div>
+  </div>
+  <script>
+    let ingredients = {
+        small: [ 50, 20 ],
+        large: [ 100, 40 ],
+        cheese: [ 10, 20 ],
+        salad: [ 20, 5 ],
+        potatoes: [ 15, 10 ],
+        flavoring: [ 15, 0 ],
+        mayo: [ 20, 5 ]
+    }
+    
+    class Hamburger {
+      constructor(size, sauce, flavoring, mayo) {
+        this.hamburger = [];
+        this.size = size;//размер гамбургера
+        this.sauce = sauce;//начинка
+        this.flavoring = (flavoring_id.checked) ? 'flavoring': false;//приправа
+        this.mayo = (mayo_id.checked) ? 'mayo': false;//майонез
+        this.price = 0;
+        this.calories = 0;
+        this._count()
+      }
+      _count() {
+        this.hamburger.push(
+            ingredients[this.size],
+            ingredients[this.sauce],
+            ingredients[this.flavoring],
+            ingredients[this.mayo]
+        );
+        //удаление пустот
+        this.hamburger = this.hamburger.filter(function (el) {
+            return el != null;
+        });
+        //ПОДСЧЁТ цены и калл
+        for (let i = 0; i < this.hamburger.length; i++) {
+            this.price = this.price + this.hamburger[i][0];
+        };
+        for (let j = 0; j < this.hamburger.length; j++) {
+            this.calories = this.calories + this.hamburger[j][1]
+        };
+
+        return count.innerHTML = `
+    <span>Цена: ${this.price}</span>
+    <span>Каллории: ${this.calories}</span>`;
+    }
+  }
+  submit.onclick = function () {
+    const hamburger = new Hamburger(size.value, 
+    sauce.value, this.flavoring, this.mayo)};
+  </script>
+</body>
+</html>
