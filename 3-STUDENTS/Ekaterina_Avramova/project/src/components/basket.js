@@ -16,10 +16,7 @@ export default class Basket extends Parent {
                 this._handleActions();
             })
     };
-    _getData(url) {
-        return fetch(url) //JSON
-            .then(data => data.json()) // JSON >>> Obj/Array
-    }
+    
     _render() {
         let str = '';
         this.items.forEach(item => {

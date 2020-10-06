@@ -40,9 +40,7 @@ export default class Catalog extends Parent {
                 this._handleActions();
             })
     }
-    _getData(url) {
-        return fetch(url).then(data => data.json())
-    }
+
     _handleActions() {
         this.container.addEventListener('click', evt => {
             if (evt.target.name == 'add' || evt.target.parentNode.name == 'add') {
