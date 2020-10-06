@@ -1,10 +1,7 @@
-// import displayMenu from './app.js'
-import app from './cart.js'
-import catalog from './catalog.js'
-// import gallery from './gallery.js'
+import Basket from './basket.js'
+import Catalog from './catalog.js'
 
 export default () => {
-    app.init();
-    catalog.init();
-    // gallery.init();
+    let basket1 = new Basket();
+    let catalog = new Catalog(basket1);
 }
