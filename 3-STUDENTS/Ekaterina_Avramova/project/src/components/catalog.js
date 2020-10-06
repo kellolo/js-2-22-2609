@@ -1,3 +1,4 @@
+import Parent from "./parent";
 
 function createItemTemplate(item) {
     return `<div class="catalog__item" id="${item.productId}">
@@ -24,13 +25,12 @@ function createItemTemplate(item) {
 }
 
 
-export default class Catalog {
+export default class Catalog extends Parent {
     constructor(basket, url = '/catalog.json', container = '#catalog') {
-        this.container = document.querySelector(container);
-        this.url = 'https://raw.githubusercontent.com/Katie177/static/master/JSON' + url;
-        this.items = [];
+        super(container, url);
         this.basket = basket;
         this._init();
+
     }
     _init() {
             this._getData(this.url)
@@ -67,5 +67,3 @@ export default class Catalog {
         this.container.innerHTML = htmlStr;
     }
 }
-
-
