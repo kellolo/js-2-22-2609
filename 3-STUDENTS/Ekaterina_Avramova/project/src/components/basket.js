@@ -1,10 +1,10 @@
-export default class Basket {
+import Parent from "./parent";
+
+export default class Basket extends Parent {
     constructor(url = '/basket.json', container = '#basket') {
-        this.items = [];
+        super(container, url);
         this.shown = false;
-        this.container = document.querySelector(container);
         this.itemsContainer = document.querySelector('#basket-items');
-        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON' + url;
         this._init();
     }
     
@@ -16,10 +16,7 @@ export default class Basket {
                 this._handleActions();
             })
     };
-    _getData(url) {
-        return fetch(url) //JSON
-            .then(data => data.json()) // JSON >>> Obj/Array
-    }
+    
     _render() {
         let str = '';
         this.items.forEach(item => {
