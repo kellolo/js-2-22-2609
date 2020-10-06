@@ -1,44 +1,11 @@
+import ancientParent from "./ancient";
 
-export default class Basket {
+export default class Basket extends ancientParent {
     constructor(url = '/basket.json', container = '#basket') {
-        this.items = [];
+        super(url, container);
+        
         this.shown = false;
-        this.container = document.querySelector(container);
         this.itemsContainer = document.querySelector('#basket-items');
-        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON' + url;
-        this._init();
-    }
-
-    _init () {
-        this._getData(this.url)
-            .then(basket => {this.items = basket.content})
-            .finally(() => {
-                this._render();
-                this._handleActions();
-            })
-    }
-
-    _getData(url) {
-        return fetch(url) //JSON
-            .then(data => data.json()) // JSON >>> Obj/Array
-    }
-
-    _render() {
-        let str = '';
-        this.items.forEach(item => {
-            str += `<div class="drop__box" data-id="${item.productId}">
-                        <a class="drop__img" href="single.html"><img src="${item.productImg}" alt="#" width="72" height="85"></a>
-                        <div class="drop__info">
-                            <a href="single.html" class="drop__title">${item.productName}</a>
-                            <img src="../src/assets/imgs/drop_cart/stars.png" alt="#">
-                            <div class="drop__price"><span class="drop__count" data-id="${item.productId}">${item.amount}</span><span class="drop__span">
-                            x
-                            </span>$${item.productPrice}</div>
-                        </div>
-                        <button class="drop__cancel fas fa-times-circle" data-id="${item.productId}" name="remove">
-                    </div>`;
-        });
-        this.itemsContainer.innerHTML = str;
     }
 
     _handleActions() {
@@ -54,7 +21,6 @@ export default class Basket {
             }
         })
     }
-
     add(product) {
         let find = this.items.find(el => el.productId == product.productId);
             if (!find) {
@@ -64,7 +30,6 @@ export default class Basket {
             }
         this._render();
     }
-
     _remove(id) {
         let find = this.items.find(el => el.productId == id);
         if (find.amount > 1) {
@@ -74,4 +39,4 @@ export default class Basket {
         }
         this._render();
     }
-}
+};
