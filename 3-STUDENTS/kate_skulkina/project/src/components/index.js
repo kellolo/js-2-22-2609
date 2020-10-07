@@ -1,10 +1,10 @@
-import cart from './cart.js'
-import catalog from './catalog.js'
+import Cart from './cart.js'
+import Catalog from './catalog.js'
 import gallery from './gallery.js'
+// импортируем класс с большой буквы inport CART from
 
 
 export default () => {
-   cart.init();
-   catalog.init();
-   gallery.init();
+   let cart = new Cart();
+   let catalog = new Catalog(cart); gallery.init();
 }

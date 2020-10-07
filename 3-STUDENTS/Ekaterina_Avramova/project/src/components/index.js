@@ -1,11 +1,8 @@
-import app from './app.js'
-import cart from './cart.js'
-import catalog from './catalog.js'
-import gallery from './gallery.js'
+import Basket from './basket.js'
+import Catalog from './catalog.js'
 
 export default () => {
-    app.init();
-    cart.init();
-    catalog.init();
-    gallery.init();
+    let basket = new Basket('basket');
+    let catalog = new Catalog('catalog');
+    
 }

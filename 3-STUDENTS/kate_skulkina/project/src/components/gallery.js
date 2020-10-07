@@ -107,6 +107,6 @@ export default {
         this.carousel.innerHTML = str;
     }
 }
-gallery.init();
+// gallery.init();
 
 
