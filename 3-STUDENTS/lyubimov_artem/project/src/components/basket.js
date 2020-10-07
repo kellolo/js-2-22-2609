@@ -1,12 +1,12 @@
 
 export default class Basket {
-    constructor (name) {
+    constructor (name, url = '/basket.json') {
         this.name = name;
         this.items = [];
         this.shown = false;
         this.container = null;
         this.itemsContainer = null;
-        this.url = 'https://raw.githubusercontent.com/Timon4eg/static/master/JSON/basket.json';
+        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON' + url;
         this._init();
 
     }

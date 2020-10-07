@@ -25,31 +25,28 @@ function createItemTemplate(item) {
 
 
 export default class Catalog {
-    constructor(name) {
-        this.name = name;
-        this.container = null;
-        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json';
+    constructor(basket, url = '/catalog.json', container = '#catalog') {
+        this.container = document.querySelector(container);
+        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON' + url;
         this.items = [];
-        this.basket = null;
+        this.basket = basket;
         this._init();
     }
     _init() {
-        this.container = document.querySelector('#catalog');
-        this.getData(this.url)
+        this._getData(this.url)
             .then(items => { this.items = items })
             .finally(() => {
                 this._render();
-                this.basket = basket; //ссылка на объект basket из файла cart.js
-                this.handleActions();
+                this._handleActions();
             })
     }
-    getData(url) {
+    _getData(url) {
         return fetch(url).then(data => data.json())
     }
-    handleActions() {
+    _handleActions() {
         this.container.addEventListener('click', evt => {
-            if (evt.target.name == 'add') {
-                let datas = evt.target.dataset;
+            if (evt.target.name == 'add' || evt.target.parentNode.name == 'add') {
+                let datas = evt.target.tagname == 'add' ? evt.target.dataset : evt.target.parentNode.dataset;
 
                 let newProd = {
                     productId: datas.id,

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let burgerSize = {
+            "small" : {price: 50, calories: 20},
+            "big" : {price: 100, calories: 40},
+        };
+
+        let burgerTopping = {
+            "cheese": {price: 10, calories: 20},
+            "salad": {price: 20, calories: 5},
+            "potato": {price: 15, calories: 10},
+        };
+        
+        let burgerAddTopping = {
+            "spices": {price: 15, calories: 0},
+            "mayonese": {price: 20, calories: 5},
+        };
+
+        class Burger {
+            constructor (size, topping, addTopping) {
+                this.size = burgerSize[size];
+                this.topping = burgerTopping[topping];
+                if (addTopping === null) {
+                    this.addTopping = {price: 0, calories: 0};
+                }
+                else  {
+                    this.addTopping = burgerAddTopping[addTopping];
+                }
+            }
+
+            _getPrices () {
+                return this.size.price + this.topping.price + this.addTopping.price;
+            }
+
+            _getCalories () {
+                return this.size.calories + this.topping.calories + this.addTopping.calories;
+            }
+            
+        }
+
+
+    </script>
+</body>
+</html>

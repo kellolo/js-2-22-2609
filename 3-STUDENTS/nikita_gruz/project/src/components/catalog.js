@@ -23,30 +23,29 @@ function createItemTemplate(item) {
 </div>`
 }
 
+import Parent from './parent.js'
 
 export default class Catalog {
-    constructor() {
-        this.container = null;
+    constructor(basket, url = '/catalog.json', container = '#catalog') {
+        this.container = document.querySelector(container);
         this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json';
         this.items = []; 
-        this.basket = null;
-        this._init (basket);
-    }
-        _init() {
-        this.container = document.querySelector('#catalog');
         this.basket = basket;
-        this.getData(this.url)
-            .then(items => {this.items = items})
-            .finally(() => {
-                this._render();
-                this.handleActions();
-            })
-        }
-    
-    getData(url) {
-        return fetch(url).then(data => data.json())
+        this._init ();
     }
-    handleActions() {
+    //     _init() {
+    //     this._getData(this.url)
+    //         .then(items => {this.items = items})
+    //         .finally(() => {
+    //             this._render();
+    //             this._handleActions();
+    //         })
+    //     }
+    
+    // _getData(url) {
+    //     return fetch(url).then(data => data.json())
+    // }
+    _handleActions() {
         this.container.addEventListener('click', evt => {
             if (evt.target.name == 'add') {
                 let datas = evt.target.dataset;

@@ -1,27 +1,22 @@
-export default class Basket {
-    constructor() {
-        this.items = [];
+import Parent from "./parent";
+
+export default class Basket extends Parent {
+    constructor(url = '/basket.json', container = '#basket') {
+        super(container, url);
         this.shown = false;
-        this.container = null;
-        this.itemsContainer = null;
-        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON/basket.json';
+        this.itemsContainer = document.querySelector('#basket-items');
         this._init();
     }
     
     _init () {
-        this.container = document.querySelector('#basket');
-        this.itemsContainer = document.querySelector('#basket-items');
-        this.getData(this.url)
+            this._getData(this.url)
             .then(basket => {this.items = basket.content})
             .finally(() => {
                 this._render();
                 this._handleActions();
             })
     };
-    getData(url) {
-        return fetch(url) //JSON
-            .then(data => data.json()) // JSON >>> Obj/Array
-    };
+    
     _render() {
         let str = '';
         this.items.forEach(item => {
@@ -34,12 +29,12 @@ export default class Basket {
                             x
                             </span>$${item.productPrice}</div>
                         </div>
-                        <button class="drop__cancel fas fa-times-circle" data-id="${item.productId}" name="remove">
-                        <button>
+                        <button class="drop__cancel fas fa-times-circle" data-id="${item.productId}" name="remove" >
+                         </button>
                     </div>`;
         });
         this.itemsContainer.innerHTML = str;
-    };
+    }
     _handleActions() {
         document.querySelector('#basket-toggler').addEventListener('click', () => {
             this.shown = !this.shown;
@@ -52,7 +47,7 @@ export default class Basket {
                 this._remove(ev.target.dataset.id);
             }
         })
-    };
+    }
     add(product) {
         let find = this.items.find(el => el.productId == product.productId);
             if (!find) {
@@ -61,7 +56,7 @@ export default class Basket {
                 find.amount++;
             }
         this._render();
-    };
+    }
     _remove(id) {
         let find = this.items.find(el => el.productId == id);
         if (find.amount > 1) {
