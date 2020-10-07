@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        let URL = 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json';
+
+        function makeGETRequest(url) {
+            return new Promise((resolve, reject) => {
+                var xhr = new XMLHttpRequest();
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status == 200) {
+                            resolve(xhr.responseText);
+                        } else {
+                            reject(xhr.statusText);
+                        }
+                    }
+                }
+
+                xhr.open('GET', url, true);
+                xhr.send();
+            })
+        }
+
+
+        // makeGETRequest(URL).then((ok) => {
+
+        // }, (notOk) => {
+
+        // })
+
+
+        makeGETRequest(URL)
+        .then(json => {
+            //ok === xhr.responseText
+            return JSON.parse(json)
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(notOk => {
+            console.log(notOk)
+            //notOk === xhr.statusText
+        })
+        .finally(() => {
+            console.log('end')
+        })
+    </script>
+</body>
+</html>
