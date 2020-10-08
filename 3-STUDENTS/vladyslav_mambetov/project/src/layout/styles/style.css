@@ -242,7 +242,8 @@ a {
   .header__bucket {
     padding-left: 20px;
     padding-bottom: 20px;
-    padding-top: 30px;
+    padding-top: 20px;
+    padding-right: 5px;
     position: relative; }
     .header__bucket:hover .header__cart {
       -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
@@ -262,8 +263,16 @@ a {
       z-index: 5;
       visibility: hidden;
     }
+    #basket-toggler {
+      border: none;
+      height: 38px;
+      background-color: white;
+    }
+    #basket-toggler:focus {
+      outline: none;
+    }
   .header__cart {
-    margin-right: 26px; }
+    margin: 0 13px; }
   .header__link {
     display: block;
     width: 130px;
