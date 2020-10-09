@@ -35,17 +35,7 @@
     
     
     <script>
-     
-        const hamburger = {
-            big: {
-                price:100,
-                calories:40
-            },
-            small: {
-                price:50,
-                calories:20
-            }
-        }
+
         const topping = [
              {
                 titleTopping: 'chess',
@@ -68,27 +58,27 @@
 
 
         class Hamburger {
-            constructor(size) { 
+            constructor(size,price,calories) { 
                 this.size = size;
                 this.stuffing = [];
-                this.container = null;
+                this.price = price;
+                this.calories = calories;
+                this.clearr();
                 this._init();
                 
              }
              _init(){
-                this.container = document.querySelector('.itog');
                 this.addTopping();
                 this.getSize();
                 this.getToppings();
                 this.calculatePrice();
                 this.caclculateCalories();
-
-             }
+             };
             getSize() {
                 document.querySelector('.events').addEventListener('click', evt => {
                     if(evt.target.name == "burg"){
-                        
-                        console.log(this);
+                        let siz = document.querySelector('.size-burger');
+                        siz.textContent = 'Ваш размер бургера: ' + this.size;
                     } 
             })};
             addTopping() { 
@@ -104,16 +94,19 @@
             };
             getToppings() {
                 document.querySelector('.events').addEventListener('click', (evt) => {
-                    if (evt.target.name == 'list')
-                    this.stuffing.forEach(elem => {console.log(elem.titleTopping, elem.count)})
+                    if (evt.target.name == 'list'){
+                    let str = '';
+                    let toppin = document.querySelector('.stuffing-burger');
+                    this.stuffing.forEach(elem => {str += ` ${elem.titleTopping} - ${elem.count} `})
+                    toppin.innerHTML = 'Ваши топинги:'+str;}
                 })
             };
             calculatePrice(){
                 document.querySelector('.events').addEventListener('click', evt => {
                     if (evt.target.name == 'price'){
-                    let sum = 0;
+                    let sum = +this.price;
                     this.stuffing.forEach( (elem) => {(sum+=elem.price*elem.count)}) 
-                    console.log(sum)}
+                   document.querySelector('.price').textContent = `Цена: ${sum}`}
                   
                 })
                 
@@ -121,29 +114,23 @@
             caclculateCalories(){
                 document.querySelector('.events').addEventListener('click', evt => {
                     if (evt.target.name == 'calories'){
-                    let sum = 0;
+                    let sum = +this.calories;
                     this.stuffing.forEach( (elem) => {(sum+=elem.calories*elem.count)}) 
-                    console.log(sum)}
+                    document.querySelector('.calories').textContent = `Калори: ${sum}`}
             })
         };
-
-                // Добавить добавку }
-            /* removeTopping(topping) { }// Убрать добавку }
-            getToppings(topping) {   }// Получить список добавок }
-            getSize() {              }// Узнать размер гамбургера }
-            getStuffing() {          }// Узнать начинку гамбургера }
-            calculatePrice() {       }// Узнать цену }
-            calculateCalories() {    }// Узнать калорийность } */
-            
-
-
-
-
-
-
+            clearr(){
+                document.querySelector('.size-burger').innerHTML = '';
+                document.querySelector('.stuffing-burger').innerHTML = '';
+                document.querySelector('.price').innerHTML = '';
+                document.querySelector('.calories').innerHTML = '';
+            }
         }
         document.querySelector('.size').addEventListener('click', evt => {
-            new Hamburger(evt.target.name)
+            let size = evt.target.name;
+            let price = evt.target.dataset.price;
+            let calories = evt.target.dataset.calories;
+            new Hamburger(size,price,calories)
         })
         
         
