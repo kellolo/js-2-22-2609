@@ -1,0 +1,147 @@
+<!--
+1. Дан большой текст, в котором для оформления прямой речи используются одинарные кавычки. Придумать шаблон, который заменяет одинарные кавычки на двойные.
+2. Улучшить шаблон так, чтобы в конструкциях типа aren't одинарная кавычка не заменялась на двойную.
+3. *Создать форму обратной связи с полями: Имя, Телефон, E-mail, текст, кнопка Отправить. При нажатии на кнопку Отправить произвести валидацию полей следующим образом:
+a. Имя содержит только буквы.
+b. Телефон имеет вид +7(000)000-0000.
+c. E-mail имеет вид mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru.
+d. Текст произвольный.
+e. Если одно из полей не прошло валидацию, необходимо выделить это поле красной рамкой и сообщить пользователю об ошибке.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+  </style>
+  <title>Regular expressions</title>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Regular expressions</h1>
+    <p id="srt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse at accusantium libero neque! Pariatur exercitationem porro mollitia nisi praesentium blanditiis aperiam suscipit eius sint tempore. Voluptatibus quidem facere placeat ullam!
+      Magni adipisci optio veritatis nostrum odio praesentium minus alias minima voluptatum fuga, vitae quia, deleniti cum ducimus quaerat recusandae cupiditate repellendus beatae, earum blanditiis architecto accusamus similique. Ratione, fuga aut?
+      Autem iste eligendi sapiente earum ipsum quaerat nemo recusandae qui, tempora reprehenderit ipsam consequuntur quae neque dolor nostrum excepturi voluptate odit? Porro iure eos, modi culpa natus inventore necessitatibus placeat.
+      Rerum ipsum facilis ea cumque voluptate temporibus eum error, labore commodi odit accusamus distinctio, qui nemo odio ipsam quas? Repudiandae quos qui sed dolores soluta, quia repellendus quod laudantium accusamus.
+      Itaque adipisci distinctio sunt incidunt. Esse harum asperiores soluta suscipit architecto temporibus quaerat inventore repellat quia laboriosam vitae possimus aut voluptas alias dolor, sapiente qui sed debitis libero ipsa laudantium.
+      Saepe accusantium provident pariatur debitis cumque non similique dolore voluptates fugiat. Incidunt blanditiis rerum quisquam aliquid voluptate vitae eaque ipsam obcaecati ducimus doloremque, nisi dignissimos esse at sed eius quas.
+      Totam quae quam cumque? Perferendis quis quasi obcaecati a, sed nesciunt tenetur molestias voluptatum eaque, fugit eius, dolor inventore atque repudiandae error! Repudiandae voluptatum magnam recusandae. Vero, impedit architecto! Nam.
+      Quibusdam, qui? Voluptas voluptatem modi, blanditiis dignissimos molestiae ipsam possimus veritatis porro facere facilis et laborum harum suscipit. Aut itaque quod obcaecati asperiores molestiae velit praesentium voluptates autem possimus blanditiis.
+      Sint nobis reiciendis cupiditate provident hic exercitationem molestiae facere ipsum nemo blanditiis, illo eos laboriosam ipsa repudiandae debitis. Quas itaque amet tempore reiciendis aliquam hic nulla nemo laboriosam molestiae illo?
+      Illum sequi deserunt corporis eaque laborum libero esse quod minus eveniet quidem! Eveniet consectetur odit voluptatum accusamus sint, numquam quas cum quibusdam magni sapiente quasi itaque laborum? Magnam, neque a!
+      Vero eveniet labore explicabo quod expedita sapiente consectetur quaerat cumque. Voluptatem perspiciatis sapiente culpa alias saepe numquam, minus iure earum? Neque natus excepturi magni in officiis? Tempora quae sapiente at.
+      Magnam laborum voluptatibus sit, quasi mollitia harum accusamus fuga sint consectetur ex! Ratione molestiae necessitatibus laborum aperiam nisi aliquam perferendis pariatur voluptates consequatur magnam non, earum corrupti ex incidunt vitae.</p>
+  </div>
+  <form action="https://jsonplaceholder.typicode.com/posts" method="post">
+    <div class="form-grup">
+      <label for="fname">Имя:</label>
+      <input type="text" class="form-control" id="fname" name="fname" placeholder="Олег Иванович">
+      <span class="errors"></span>
+    </div>
+    <div class="form-grup">
+      <label for="phone">Телефон:</label>
+      <input type="tel" class="form-control" id="phone" name="phone" placeholder="+7 (999)-999-99-99">
+      <span class="errors"></span>
+    </div>
+    <div class="form-grup">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="olegivanovich@mail.com">
+      <span class="errors"></span>
+    </div>
+    <div class="form-grup">
+      <label for="text">Сообщение:</label>
+      <input type="text" class="form-control" id="text" name="text" placeholder="Введите своё сообщение">
+      <span class="errors"></span>
+    </div>
+    <button type="submit" id="send-form">Отправить</button>
+  </form>
+
+  <script>
+    const form = document.querySelector('form'),
+      regExpNamber = /(8|7)\d{10}/ig;
+    let isValidate = false,
+      formControl = document.querySelector('.form-control').style;
+    const types = [
+      "fname",
+      "email",
+      "text"
+    ]
+    const reg = [
+      /[A-Za-zА-Яа-яЁё ]{3,16}/i,
+      /[a-z0-9._%+-]+@[a-z0-9-]+.+.[a-z]{2,4}/ig,
+      /[\s\wА-ЯЁ;:,.!?]+/ig
+    ]
+    const submit = () => {
+      alert("Данные отправленны");
+      form.reset();
+    }
+
+    const phone = (elem) => {
+      if (elem.name == "phone") {
+        let regNam = elem.value.replace(/\D/ig, "");
+        if (!regExpNamber.test(regNam) && regNam !== "") {
+          elem.nextElementSibling.textContent = "Введите корректный номар телофана";
+          isValidate = false;
+          elem.style.borderColor = 'red';
+        } else {
+          elem.nextElementSibling.textContent = "";
+          isValidate = true;
+          elem.style.borderColor = 'black';
+        }
+      }
+    }
+    const validateElem = (elem) => {
+      for (let i = 0; i < types.length; i++) {
+        if (elem.name == types[i]) {
+          if (!reg[i].test(elem.value) && elem.value !== "") {
+            elem.nextElementSibling.textContent = "Введите корректное значение";
+            isValidate = false;
+            elem.style.borderColor = 'red';
+          } else {
+            elem.nextElementSibling.textContent = "";
+            isValidate = true;
+            elem.style.borderColor = 'black';
+          }
+        } else {
+          isValidate = false;
+        }
+      }
+      phone(elem)
+    }
+
+    for (let elem of form.elements) { //перебор элементов формы
+      if (elem.tagName != "BUTTON") { //выбираем все элементы кроме кнопки
+        elem.addEventListener("blur", () => { //проверка по уходу с факуса
+          validateElem(elem);
+        });
+      }
+    }
+
+    form.addEventListener("submit", (event) => { //перехватываем событие у браузера
+      event.preventDefault(); //и останавливаем его
+      for (let elem of form.elements) { //перебор элементов формы
+        if (elem.tagName != "BUTTON") { //выбираем все элементы кроме кнопки
+          if (elem.value == "") { //проверка на заполнение
+            elem.nextElementSibling.textContent = "Данное поле обязательно к заполнению";
+            isValidate = false;
+            elem.style.borderColor = 'red';
+          } else {
+            elem.nextElementSibling.textContent = "";
+            isValidate = true;
+            elem.style.borderColor = 'black';
+          }
+        }
+      }
+      if (isValidate) {
+        submit()
+      }
+    })
+  </script>
+</body>
+
+</html>
