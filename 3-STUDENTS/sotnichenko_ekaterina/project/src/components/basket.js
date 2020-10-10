@@ -1,23 +1,19 @@
 import List from './LIST'
 //не отображается корзина, в стиль передается - display: none !important;
 export default class Basket extends List {
-    constructor(url = '/basket.json', container = '#basket-toggler') {
-        super(url, '#basket-items')
+    constructor(url = '/basket.json', container = '#basket') {
+        super('#basket-items', url)
         this.shown = false;
         this.wrapper = document.querySelector(container);
     }
     _handleActions() {
-        console.log(this.wrapper);
-        this.wrapper.addEventListener('click', () => {
+        document.querySelector('#basket-toggler').addEventListener('click', () => {
             this.shown = !this.shown;
             this.wrapper.classList.toggle('invisible');
-            console.log(this.wrapper.classList);
         });
-        console.log(this.wrapper);
-        this.wrapper.addEventListener('click', ev => {
+        this.container.addEventListener('click', ev => {
             if (ev.target.name == 'remove') {
                 this._remove(ev.target.dataset.id);
-                //console.log(this.shown);
             }
         })
     }

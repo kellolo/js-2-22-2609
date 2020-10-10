@@ -6,7 +6,7 @@ let types = {
 }
 
 export default class List {
-    constructor(url, container, basket = false) {
+    constructor(url, container, basket = null) {
         this.container = document.querySelector(container),
         this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON' + url,
         this.basket = basket,
