@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="manipulating">
+        <h2 class="">Меняй тут</h2>
+        <textarea id="before" cols="30" rows="10"></textarea>
+        <button id="pushMe">Convert</button>
+        <textarea id="after" cols="30" rows="10" style="border: none;"></textarea>
+    </div>
+</body>
+</html>
+
+<script>
+
+    class Converter {
+        constructor(title) {
+            this.title = title;
+            this._init();
+        }
+
+        _init(){
+            document.getElementById('pushMe').addEventListener('click', this.convert);
+        }
+
+        convert() {
+            let textBefore = document.getElementById('before').value;
+            let regex = /(\'\B|\B\')/gm;
+            let subst = `\"`;
+            document.getElementById('after').value = textBefore.replaceAll(regex, subst);
+        }
+    }
+
+let converter = new Converter('ChangeQuotes!');
+
+</script>
