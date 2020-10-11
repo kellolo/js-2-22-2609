@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="form">
+        <div style="height: 50px;"><input type="text" id=name placeholder="Имя" style="display: block;"></div>
+        <input type="text" id=phone placeholder="Телефон +7(000)000-0000" style="display: block; margin-bottom: 20px;">
+        <input type="text" id=email placeholder="Email" style="display: block; margin-bottom: 20px;">
+        <textarea name="" id="textarea" cols="30" rows="10" placeholder="Рандомный текст" style="display: block; margin-bottom: 20px;"></textarea>
+    </div>
+    <button id="button">Отправить</button>
+</body>
+</html>
+
+<script>
+    class Validator {
+        constructor(name='', phone='', email='') {
+            this.name = name;
+            this.phone = phone;
+            this.email = email;
+            this.init();
+        }
+
+        init() {
+            document.getElementById('form').addEventListener('change', this.changedValue);
+            document.getElementById('button').addEventListener('click', this.buttonHandler);
+        }
+
+        buttonHandler() {
+            let values = document.getElementsByTagName('input');
+            console.log(values);
+            values.forEach(element => {
+                this.validate(element);
+            });
+        }
+
+        changedValue(evt) {
+            let element = evt.srcElement;
+            console.log(evt, '----------------------', element);
+            console.log(element.id);
+            this.validate(element);
+        }
+
+        validate(element) {
+            let val = element.value;
+            let destination = element.id;
+            let checker = '';
+            console.log(destination);
+            switch(destination) {
+                case 'name':
+                    checker = /\b[a-zа-яё]+\b/i;
+                    break;
+                case 'phone':
+                    checker = /\b\+\d\(\d{3}\)\d{3}\-\d{4}/m;
+                    break;
+                case 'email':
+                    checker = /^[a-z0-9.]+@+[a-z0-9]+\.[a-z]{2,3}$/i;
+                    break;
+                default:
+                    console.log(destination);
+                    break;
+            }
+            
+            if (checker.test(val)) {
+                element.style.border='solid';
+                element.style.borderColor='#32CD32';
+                let x = document.getElementById(element.id + 'label');
+                if (x != undefined) {
+                    x.remove();
+                }
+            } else {
+                element.style.border='solid';
+                element.style.borderColor='#e52213';
+                var newlabel = document.createElement("Label");
+                newlabel.setAttribute("for",element.id);
+                newlabel.innerHTML = "ашыпка";
+                newlabel.id = element.id + 'label';
+                element.after(newlabel);
+            }
+        }
+
+        throwErr(result, destination) {
+            
+        }
+    }
+
+    let valid = new Validator();
+</script>
