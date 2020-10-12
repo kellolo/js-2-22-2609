@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        .input {
+            height: 50px;
+        },
         .error {
-            
+            height: 50px;
         }
     </style>
 </head>
 <body>
     <div id="form">
-        <div style="height: 50px;"><input type="text" name="name" placeholder="Имя" style="display: block;"></div>
-        <div style="height: 50px;"><input type="text" name="phone" placeholder="Телефон +7(000)000-0000" style="display: block;"></div>
-        <div style="height: 50px;"><input type="text" name="email" placeholder="Email" style="display: block;"></div>
+        <div class="input"><input type="text" name="name" placeholder="Имя" style="display: block;"></div>
+        <div class="input"><input type="text" name="phone" placeholder="Телефон +7(000)000-0000" style="display: block;"></div>
+        <div class="input"><input type="text" name="email" placeholder="Email" style="display: block;"></div>
         <textarea name="" id="textarea" cols="30" rows="10" placeholder="Рандомный текст" style="display: block; margin-bottom: 20px;"></textarea>
     </div>
     <button id="button">Отправить</button>
@@ -23,10 +26,8 @@
 
 <script>
     class Validator {
-        constructor(name='', phone='', email='') {
-            this.name = name;
-            this.phone = phone;
-            this.email = email;
+        constructor() {
+            this.a = 1;
             this.templates = {
                 name: /\b[a-zа-яё]+\b/i,
                 phone: /\b\+\d\(\d{3}\)\d{3}\-\d{4}/m,
@@ -36,41 +37,16 @@
         }
 
         init() {
-            document.getElementById('form').addEventListener('change', this.validate);
+            document.getElementById('form').addEventListener('change', () => {
+                this.validate(this.a);
+            });
             // document.getElementById('button').addEventListener('click', this.validate);
         }
 
-        validate(evt) {
+        validate(evt, a) {
+            console.log(a);
             let val = evt.srcElement.value;
-            let checker = '';
             if (this.templates[evt.target.name]) {
-                // do validate
-            }
-            // switch(evt.srcElement.id) {
-            //     case 'name':
-            //         checker = /\b[a-zа-яё]+\b/i;
-            //         console.log(checker.test(val));
-            //         break;
-            //     case 'phone':
-            //         checker = /\b\+\d\(\d{3}\)\d{3}\-\d{4}/m;
-            //         console.log(checker.test(val));
-            //         break;
-            //     case 'email':
-            //         checker = /^[a-z0-9.]+@+[a-z0-9]+\.[a-z]{2,3}$/i;
-            //         console.log(checker.test(val));
-            //         break;
-            //     default:
-            //         console.log(evt.srcElement.id);
-            //         break;
-            // }
-            let destination = evt.srcElement.id;
-            
-            console.log(evt);
-
-            if (checker.test(val)) {
-                // evt.srcElement.style.border='solid';
-                // evt.srcElement.style.borderColor='#32CD32';
-                //el.classList.toggle('error')
                 let x = document.getElementById(evt.srcElement.id + 'label');
                 if (x != undefined) {
                     x.remove();
@@ -78,11 +54,6 @@
             } else {
                 evt.srcElement.style.border='solid';
                 evt.srcElement.style.borderColor='#e52213';
-                // var newlabel = document.createElement("Label");
-                // newlabel.setAttribute("for",evt.srcElement.id);
-                // newlabel.innerHTML = "ашыпка";
-                // newlabel.id = evt.srcElement.id + 'label';
-                // evt.srcElement.after(newlabel);
                 let err = `<label> Err </label>`;
                 evt.target.parentNode.insertAdjacentHTML('beforeend', err);
             }
