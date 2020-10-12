@@ -224,7 +224,7 @@
         <div class="catalog__main" id="catalog">
        <!-- catalog_content_here      -->
             <div v-for="item in items"class="catalog__item" :id="item.productId">
-                <button @click="addInBasket(item.productId)"
+                <button @click="addInBasket"
                     class="catalog__bucket" 
                     name="add"
                     :data-id="item.productId" 

@@ -30,15 +30,13 @@ const app = new Vue ({
                     find.amount++;
                 }
         },
-        addInBasket(id){
-            let catalogItem = document.querySelector(`#${id}`);
-            let datas  = catalogItem.querySelector('button')
-            
-               let newProd = {
-                    productId: datas.dataset.id,
-                    productPrice: +datas.dataset.price,
-                    productName: datas.dataset.name,
-                    productImg: datas.dataset.image
+        addInBasket(evt){
+            let datas = evt.target.name == 'add' ? evt.target.dataset : evt.target.parentNode.dataset;
+                let newProd = {
+                    productId: datas.id,
+                    productPrice: +datas.price,
+                    productName: datas.name,
+                    productImg: datas.image
                 }
 
                this.add(newProd);
@@ -48,7 +46,7 @@ const app = new Vue ({
             if (find.amount > 1) {
                 find.amount--;
             } else {
-                this.basket.splice(this.items.indexOf(find), 1);
+                this.basket.splice(this.basket.indexOf(find), 1);
             }
         },
         _sum(){
