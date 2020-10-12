@@ -2,7 +2,7 @@ import List from './LIST'
 //не отображается корзина, в стиль передается - display: none !important;
 export default class Basket extends List {
     constructor(url = '/basket.json', container = '#basket') {
-        super('#basket-items', url)
+        super(url, '#basket-items')
         this.shown = false;
         this.wrapper = document.querySelector(container);
     }
