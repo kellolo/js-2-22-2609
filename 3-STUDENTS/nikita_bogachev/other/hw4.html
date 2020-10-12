@@ -15,8 +15,9 @@
             <label>Телефон<input type="tel" id="user-tel" placeholder="+7(000)000-0000" class="input-text"></label>
             <label>Почта<input type="email" id="user-email" placeholder="@mail.ru" class="input-text"></label>
             <label>Ваше сообщение<textarea name="user-text" id="user-text" cols="30" rows="10" class="input-text textarea" ></textarea></label>
+            <button id="btn">Проверить</button>
         </form>
-         <button id="btn">Проверить</button>
+         
             <p class="test">'Put on your jacket, please,' mother said' to him. 'It's freezing today.'</p>
             <button id="change">Заменить кавычки</button>
             <p class="test1"></p>
@@ -51,7 +52,8 @@
                         this.checkValid(this.userName, this.regexpName);
                         this.checkValid(this.userTel, this.regexpTel);
                         this.checkValid(this.userEmail, this.regexpEmail);
-                        this.checkValid(this.test, this.regexpTest)
+                        this.checkValid(this.test, this.regexpTest);
+                        evt.preventDefault();
                     }
                 } )
             }
@@ -61,6 +63,7 @@
                 let check = inputValid.match(regexp);
                 if (!check){
                     wrapperInput.classList.add('invalid-forma');
+                    wrapperInput.placeholder = 'Error'
                 } else {wrapperInput.classList.remove('invalid-forma')}
             }
         }
