@@ -4,7 +4,7 @@ import Gallery from './gallery.js'
 
 
 export default () => {
-    let basket = new Basket(basket);
-    let catalog = new Catalog(catalog);
+    let basket = new Basket();
+    let catalog = new Catalog(basket);
     let gallery = new Gallery(gallery);
 }

@@ -28,6 +28,9 @@ module.exports = {
               {
                 loader: 'file-loader',
               },
+              {
+                publicPath: 'some/path',
+              },
             ],
           },    
       ],
