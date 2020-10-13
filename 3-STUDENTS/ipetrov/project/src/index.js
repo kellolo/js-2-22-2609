@@ -16,17 +16,22 @@ const app = new Vue({
             return fetch(url).then(d => d.json())
         },
         add(item) {
-            basketItems += item;
+            let find = this.basketItems.find(el => el.productId == item.productId);
+            if (!find) {
+                this.basketItems.push(Object.assign(item, { amount: 1 }));
+            } else {
+                find.amount++;
+            }
         },
     },
     mounted() {
         this._get(this.catalogURL)
         .then(items => 
-            {this.catalogItems = items; console.log(this.catalogItems)
+            {this.catalogItems = items;
             })
         this._get(this.basketURL)
         .then(items => 
-            {this.basketItems = items.content; console.log(this.basketItems)
+            {this.basketItems = items.content;
             })
     }
 })
@@ -47,4 +52,16 @@ const app = new Vue({
 //     find.amount++;
 // }
 
-
+{/* <button id="basket-toggler"><img class="header__cart" src="../src/assets/imgs/cart.png" alt="cart"></button>
+<!-- DROP CART -->
+<div class="drop invisible" id="basket">
+    <div id="basket-items">
+        
+    </div>
+    <div class="drop__total">
+        <div>TOTAL</div>
+        <div id="total-sum"></div>
+    </div>
+    <a href="checkout.html" class="drop__link">Checkout</a>
+    <a href="#" class="drop__link">Go to cart</a>
+</div> */}
