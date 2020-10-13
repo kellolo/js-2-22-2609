@@ -1,26 +1,25 @@
+import Parent from './parent.js'
+
 export default class Basket {
     constructor () {
         this.items = [];
         this.shown = false;
-        this.container = null;
-        this.itemsContainer = null;
+        this.container = document.querySelector(container);
+        this.itemsContainer = document.querySelector('#basket-items');
         this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON/basket.json';
         this._init();
     }
-    _init () {
-        this.container = document.querySelector('#basket');
-        this.itemsContainer = document.querySelector('#basket-items');
-        this.getData(this.url)
-            .then(basket => {this.items = basket.content})
-            .finally(() => {
-                this._render();
-                this._handleActions();
-            })
-    }
-    getData(url) {
-        return fetch(url) //JSON
-            .then(data => data.json()) // JSON >>> Obj/Array
-    }
+    // _init () {
+    //     this.getData(this.url)
+    //         .then(basket => {this.items = basket.content})
+    //         .finally(() => {
+    //             this._render();
+    //             this._handleActions();
+    //         })
+    // }
+    // _getData(url) {
+    //     return fetch(url).then(data => data.json())
+    // }
     _render() {
         let str = '';
         this.items.forEach(item => {

@@ -12,17 +12,17 @@
 //     });
 // }, 300);
 
-export default {
+let basket = {
     items: [],
     shown: false,
     container: null,
     itemsContainer: null,
     url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/basket.json',
-    init () {
+    init() {
         this.container = document.querySelector('#basket');
         this.itemsContainer = document.querySelector('#basket-items');
         this.getData(this.url)
-            .then(basket => {this.items = basket.content})
+            .then(basket => { this.items = basket.content })
             .finally(() => {
                 this._render();
                 this._handleActions();
@@ -65,11 +65,11 @@ export default {
     },
     add(product) {
         let find = this.items.find(el => el.productId == product.productId);
-            if (!find) {
-                this.items.push(Object.assign(product, { amount: 1 }));
-            } else {
-                find.amount++;
-            }
+        if (!find) {
+            this.items.push(Object.assign(product, { amount: 1 }));
+        } else {
+            find.amount++;
+        }
         this._render();
     },
     _remove(id) {
@@ -109,15 +109,15 @@ export default {
     //         return;
     //     }
     //     let productRow = 
-        // `<div class="drop__box" data-id="${product.id}">
-        //     <a class="drop__img" href="single.html"><img src="${product.image}" alt="#" width="72" height="85"></a>
-        //     <div class="drop__info">
-        //         <a href="single.html" class="drop__title">${product.name}</a>
-        //         <img src="../src/assets/imgs/drop_cart/stars.png" alt="#">
-        //         <div class="drop__price"><span class="drop__count" data-id="${product.id}">1</span><span class="drop__span">x</span>$${product.price}</div>
-        //     </div>
-        //     <button class="drop__cancel" data-id="${product.id}"><i class="fas fa-times-circle"></i><button>
-        // </div>`;
+    // `<div class="drop__box" data-id="${product.id}">
+    //     <a class="drop__img" href="single.html"><img src="${product.image}" alt="#" width="72" height="85"></a>
+    //     <div class="drop__info">
+    //         <a href="single.html" class="drop__title">${product.name}</a>
+    //         <img src="../src/assets/imgs/drop_cart/stars.png" alt="#">
+    //         <div class="drop__price"><span class="drop__count" data-id="${product.id}">1</span><span class="drop__span">x</span>$${product.price}</div>
+    //     </div>
+    //     <button class="drop__cancel" data-id="${product.id}"><i class="fas fa-times-circle"></i><button>
+    // </div>`;
     //     let dropCart = document.querySelector('#drop');
     //     dropCart.insertAdjacentHTML("afterbegin", productRow);
     // },
@@ -184,3 +184,5 @@ export default {
 };
 
 basket.init();
+
+export default basket;
