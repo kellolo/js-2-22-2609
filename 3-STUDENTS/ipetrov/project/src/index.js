@@ -23,6 +23,10 @@ const app = new Vue({
                 find.amount++;
             }
         },
+        remove(item) {
+            let find = this.basketItems.find(el => el.productId == item.productId);
+            this.basketItems.splice(this.basketItems.indexOf(find), 1);
+        }
     },
     mounted() {
         this._get(this.catalogURL)
@@ -35,33 +39,3 @@ const app = new Vue({
             })
     }
 })
-
-
-
-// import app from "./components"
-// import 'bootstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css'
-// import './layout/styles/style.css'
-
-// app();
-
-// let find = this.items.find(el => el.productId == product.productId);
-// if (!find) {
-//     this.items.push(Object.assign(product, { amount: 1 }));
-// } else {
-//     find.amount++;
-// }
-
-{/* <button id="basket-toggler"><img class="header__cart" src="../src/assets/imgs/cart.png" alt="cart"></button>
-<!-- DROP CART -->
-<div class="drop invisible" id="basket">
-    <div id="basket-items">
-        
-    </div>
-    <div class="drop__total">
-        <div>TOTAL</div>
-        <div id="total-sum"></div>
-    </div>
-    <a href="checkout.html" class="drop__link">Checkout</a>
-    <a href="#" class="drop__link">Go to cart</a>
-</div> */}

@@ -65,7 +65,7 @@
                                     x
                                     </span>${{item.productPrice}}</div>
                                 </div>
-                                <button class="drop__cancel fas fa-times-circle" :data-id="item.productId" name="remove">
+                                <button class="drop__cancel fas fa-times-circle" :data-id="item.productId" name="remove" @click="remove(item)">
                             </div>
                         </div>
                         <div class="drop__total">
