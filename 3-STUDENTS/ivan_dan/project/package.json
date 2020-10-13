@@ -9,7 +9,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "ISC", 
   "devDependencies": {
     "copy-webpack-plugin": "^6.2.0",
     "css-loader": "^4.3.0",

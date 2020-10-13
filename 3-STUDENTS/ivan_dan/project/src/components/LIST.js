@@ -1,4 +1,11 @@
-import Item from "./ITEM"
+import Item from './ITEM'
+
+let types = {
+    Catalog: 'catalog',
+    Basket: 'basket'
+};
+
+
 export default class List {
     constructor(container, url, basket = null) {
         this.container = document.querySelector(container);
@@ -9,15 +16,16 @@ export default class List {
     }
 
     _init() {
-        this._getData(this.url)
+        this._get(this.url)
             .then(data => {this.item = this.basket ? data : data.content})
             //.then(basket => {this.items = basket.content})
             .finally(() => {
                 this._render()
                 this._handleActions()
+            })
     }
 
-    _get() {
+    _get(url) {
         return fetch(url)
             .then(data => data.json())
     }
@@ -25,7 +33,7 @@ export default class List {
     _render() {
         let htmlStr = ''
         this.items.forEach(item => {
-            //htmlStr += createItemTemplate(item);
+            htmlStr += new Item(item, types[this.constructor.name]).render();
         });
         this.container.innerHTML = htmlStr;
     }
