@@ -345,7 +345,7 @@ a {
 .promo {
   height: 613px;
   background-color: #e8e8e8;
-  background-image: url(../../assets/imgs/promo.png);
+  background-image: url("https://github.com/Ydochkin/js-2-22-2609/blob/master/2-Proj/2/src/assets/imgs/promo.png?raw=true");
   background-repeat: no-repeat;
   background-position: center -52px;
   display: flex;
@@ -579,7 +579,7 @@ a {
 /* SUBSCRIBE */
 .subscribe {
   margin-bottom: 110px;
-  background: url(../../assets/imgs/subscribe/subscribe_main.png) center no-repeat;
+  background: url("https://github.com/Ydochkin/js-2-22-2609/blob/master/2-Proj/2/src/assets/imgs/subscribe/subscribe_main.png?raw=true") center no-repeat;
   background-size: cover; }
   .subscribe__inner {
     display: flex; }
