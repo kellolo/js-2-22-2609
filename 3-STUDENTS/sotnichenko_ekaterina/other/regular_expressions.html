@@ -1,14 +1,3 @@
-<!--
-1. Дан большой текст, в котором для оформления прямой речи используются одинарные кавычки. Придумать шаблон, который заменяет одинарные кавычки на двойные.
-2. Улучшить шаблон так, чтобы в конструкциях типа aren't одинарная кавычка не заменялась на двойную.
-3. *Создать форму обратной связи с полями: Имя, Телефон, E-mail, текст, кнопка Отправить. При нажатии на кнопку Отправить произвести валидацию полей следующим образом:
-a. Имя содержит только буквы.
-b. Телефон имеет вид +7(000)000-0000.
-c. E-mail имеет вид mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru.
-d. Текст произвольный.
-e. Если одно из полей не прошло валидацию, необходимо выделить это поле красной рамкой и сообщить пользователю об ошибке.
--->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,85 +38,67 @@ e. Если одно из полей не прошло валидацию, не�
   </form>
 
   <script>
-    const form = document.querySelector('form'),
-      regExpNamber = /(8|7)\d{10}/ig;
-    let isValidate = false,
-      formControl = document.querySelector('.form-control').style;
-    const types = [
-      "fname",
-      "email",
-      "text"
-    ]
-    const reg = [
-      /[A-Za-zА-Яа-яЁё ]{3,16}/i,
-      /[a-z0-9._%+-]+@[a-z0-9-]+.+.[a-z]{2,4}/ig,
-      /[\s\wА-ЯЁ;:,.!?]+/ig
-    ]
-    const submit = () => {
-      alert("Данные отправленны");
-      form.reset();
+    const types = {
+      fname: /[A-Za-zА-Яа-яЁё ]{3,16}/i,
+      phone: /(8|7)\d{10}/ig,
+      email: /[a-z0-9._%+-]+@[a-z0-9-]+.+.[a-z]{2,4}/ig,
+      text: /[\s\wА-ЯЁ;:,.!?]+/ig
     }
-
-    const phone = (elem) => {
-      if (elem.name == "phone") {
-        let regNam = elem.value.replace(/\D/ig, "");
-        if (!regExpNamber.test(regNam) && regNam !== "") {
-          elem.nextElementSibling.textContent = "Введите корректный номар телофана";
-          isValidate = false;
+    class Validator {
+      constructor(){
+        this.form = document.querySelector('form'),
+        this.regExpNamber = /(8|7)\d{10}/ig
+        this.isValidate = false,
+        this.formControl = document.querySelector('.form-control').style,
+        this.init()
+      }
+      init(){
+        this.form.addEventListener("submit", (event) => { //перехватываем событие у браузера
+          event.preventDefault(); //и останавливаем его
+        })
+        this.focusCheck();
+        if(this.isValidate){
+          this.submit();
+        }
+      }
+      focusCheck() {
+        let objeсtKey = Object.keys(types);
+        for (let i = 0; i < objeсtKey.length; i++) {
+          this.form.elements[i].addEventListener("blur", () => { //проверка по уходу с факуса
+            this.checkReg(this.form.elements[i]);
+          });
+        }
+      }
+      checkReg(elem){
+        console.log(types[elem.id].test(elem.value));// почему они оба true???
+        console.log(!types[elem.id].test(elem.value));//почему они оба true???
+        console.log(types[elem.id]);
+        if (!types[elem.id].test(elem.value) && elem.value !== "") { // проверка на соответствие регулярки
+          elem.nextElementSibling.textContent = "Введите корректное значение";
+          this.isValidate = false;
           elem.style.borderColor = 'red';
-        } else {
+          console.log('не кор');
+        } else if (elem.value == "") {
+          elem.nextElementSibling.textContent = "Поле обязательно к заполнению";
+          this.isValidate = false;
+          elem.style.borderColor = 'red';
+          console.log('пусто');
+        } else if (types[elem.id].test(elem.value)) {
           elem.nextElementSibling.textContent = "";
-          isValidate = true;
+          this.isValidate = true;
           elem.style.borderColor = 'black';
-        }
-      }
-    }
-    const validateElem = (elem) => {
-      for (let i = 0; i < types.length; i++) {
-        if (elem.name == types[i]) {
-          if (!reg[i].test(elem.value) && elem.value !== "") {
-            elem.nextElementSibling.textContent = "Введите корректное значение";
-            isValidate = false;
-            elem.style.borderColor = 'red';
-          } else {
-            elem.nextElementSibling.textContent = "";
-            isValidate = true;
-            elem.style.borderColor = 'black';
-          }
+          console.log('все ок');
         } else {
-          isValidate = false;
+          console.log('ошибка');
         }
-      }
-      phone(elem)
-    }
 
-    for (let elem of form.elements) { //перебор элементов формы
-      if (elem.tagName != "BUTTON") { //выбираем все элементы кроме кнопки
-        elem.addEventListener("blur", () => { //проверка по уходу с факуса
-          validateElem(elem);
-        });
+      }
+      submit() {
+        alert("Данные отправленны");
+        this.form.reset();
       }
     }
-
-    form.addEventListener("submit", (event) => { //перехватываем событие у браузера
-      event.preventDefault(); //и останавливаем его
-      for (let elem of form.elements) { //перебор элементов формы
-        if (elem.tagName != "BUTTON") { //выбираем все элементы кроме кнопки
-          if (elem.value == "") { //проверка на заполнение
-            elem.nextElementSibling.textContent = "Данное поле обязательно к заполнению";
-            isValidate = false;
-            elem.style.borderColor = 'red';
-          } else {
-            elem.nextElementSibling.textContent = "";
-            isValidate = true;
-            elem.style.borderColor = 'black';
-          }
-        }
-      }
-      if (isValidate) {
-        submit()
-      }
-    })
+    let valid = new Validator();
   </script>
 </body>
 
