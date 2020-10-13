@@ -24,6 +24,10 @@ const app = new Vue({
         .then(items => 
             {this.catalogItems = items; console.log(this.catalogItems)
             })
+        this._get(this.basketURL)
+        .then(items => 
+            {this.basketItems = items.content; console.log(this.basketItems)
+            })
     }
 })
 
