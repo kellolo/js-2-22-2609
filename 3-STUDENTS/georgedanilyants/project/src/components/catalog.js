@@ -1,5 +1,4 @@
 import List from './LIST.js'
-
 export default class Catalog extends List{
     constructor(basket, url = '/catalog.json', container ='#catalog') {
        super(container, url, basket);

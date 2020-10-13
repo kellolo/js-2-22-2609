@@ -1,10 +1,9 @@
 import Item from './ITEM';
-import item from './ITEM'
 
 let types = {
     Catalog: "catalog",
     Basket: "basket"
-}
+};
 
 
 
@@ -33,7 +32,6 @@ export default class List {
     _render() {
         let htmlStr = '';
         this.items.forEach(item => {
-            // htmlStr += createItemTemplate(item);
             htmlStr += new Item(item, types[this.constructor.name]).render();
         });
         this.container.innerHTML = htmlStr;

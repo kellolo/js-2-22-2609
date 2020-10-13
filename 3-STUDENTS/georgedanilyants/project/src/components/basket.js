@@ -2,7 +2,7 @@ import List from './LIST.js'
 
 export default class Basket extends List {
     constructor(url = '/basket.json', container = '#basket') {
-        super('#basket-items', url)
+        super('#basket-items', url);
         this.shown = false;
         this.wrapper = document.querySelector(container);
     }
