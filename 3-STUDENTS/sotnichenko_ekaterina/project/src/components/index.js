@@ -41,15 +41,12 @@ export default () => {
                 this.totalSum = this.basketArr.reduce( (total, value) =>{
                     return (total + value.amount * value.productPrice)
                 }, 0);
-                 return '$' + this.totalSum;
+                 return this.totalSum;
             }
         },
         mounted() {
             this._get(this.catalogURL)
-                .then(item => {this.items = item})
-                .finally(() => {
-                    
-                });
+                .then(item => {this.items = item});
             this._get(this.basketURL)
                 .then(basket => {this.basketArr = basket.content})
                 .finally(() => {

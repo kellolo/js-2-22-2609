@@ -74,7 +74,7 @@
                     </div>
                     <div class="drop__total">
                         <div>TOTAL</div>
-                        <div id="total-sum">{{ totalSum }}</div>
+                        <div id="total-sum" v-if="totalSum">{{ '$' + totalSum }}</div>
                     </div>
                     <a href="checkout.html" class="drop__link">Checkout</a>
                     <a href="#" class="drop__link">Go to cart</a>
@@ -226,6 +226,7 @@
         <h3 class="catalog__header">Featured Items</h3>
         <p class="catalog__header_text">Shop for items based on what we featured in this week</p>
         <div class="catalog__main" id="catalog">
+            <!-- <catalog v-for="item of items"></catalog> -->
             <div class="catalog__item" v-for="item of items">
                 <button
                     @click="add(item)"
