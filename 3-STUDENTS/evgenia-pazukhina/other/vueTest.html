@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        form {
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-item {
+            margin: 0 auto 4px;
+            padding: 4px;
+            width: 40%;
+            resize: none;
+        }
+
+        .btn-wrap {
+            margin: 12px auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            margin: 0 10px;
+        }
+
+        sup {
+            color: red;
+        }
+
+        .err {
+            margin: 12px auto;
+            width: 30%;
+            text-align: center;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="app" @submit.prevent="validate" novalidate="true">
+        <label for="name" class="form-item">Имя<sup> *</sup></label>
+        <input class="form-item" type="text" name="name" v-model="name" placeholder="Вася Пупкин">
+        <label for="email" class="form-item">E-mail<sup> *</sup></label>
+        <input class="form-item" type="email" name="email" v-model="email" placeholder="email@mail.ru">
+        <label for="phone" class="form-item">Телефон<sup> *</sup></label>
+        <input class="form-item" type="tel" name="phone" v-model="phone" placeholder="+7(000)000-0000">
+        <textarea class="form-item" cols="30" rows="10"></textarea>
+        <div class="btn-wrap">
+            <button type="reset">Отменить</button>
+            <button type="submit" @click="console.log('pushed')">Отправить</button>
+        </div>
+    </form>
+    <div class="err" v-if="errors.length">
+        <span>
+            Следуйте инструкциям:
+        </span>
+        <ul>
+            <li v-for="error in errors">{{ error }}</li>
+        </ul>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+
+            data: {
+                errors: [],
+                name: '',
+                email: '',
+                phone: '',
+            },
+
+            methods: {
+                isNameValid(name) {
+                    const validName = /\p{L}/;
+                    validName.lastIndex = 0;
+                    return validName.test(this.name);
+                },
+                isEmailValid(email) {
+                    const validEmail = /^[a-z]+(|\.|\-)[a-z]+\@[a-z]+\.[a-z]{2,3}$/;
+                    validEmail.lastIndex = 0;
+                    return validEmail.test(this.email);
+                },
+                isPhoneValid(phone) {
+                    const validPhone = /\+[7]\([0-9]{3}\)[0-9]{3}\-[0-9]{4}/;
+                    validPhone.lastIndex = 0;
+                    return validPhone.test(this.phone);
+                },
+
+                validate(app) {
+                    this.errors = [];
+
+                    if (!this.name || !this.email || !this.phone) {
+                        this.errors.push('Заполните все обязательные поля')
+                    } else if (!isNameValid) {
+                        this.errors.push('Имя может содержать только буквы')
+                    } else if (!isEmailValid) {
+                        this.errors.push('Проверьте введенный email адрес')
+                    }else if (!isPhoneValid) {
+                        this.errors.push('Введите корректный номер телефона')
+                    }
+
+                    if (this.errors.length == 0) {
+                        return false;
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
