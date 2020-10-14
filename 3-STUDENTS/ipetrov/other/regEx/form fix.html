@@ -5,21 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .input {
-            height: 50px;
-        },
+        input {
+            display: block;
+            margin: 10px 0;
+        }
         .error {
-            height: 50px;
+            border: 2px solid red;
+        }
+        textarea {
+            margin-top: 20px;
+        }
+        .invis {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div id="form">
-        <div class="input"><input type="text" name="name" placeholder="Имя" style="display: block;"></div>
-        <div class="input"><input type="text" name="phone" placeholder="Телефон +7(000)000-0000" style="display: block;"></div>
-        <div class="input"><input type="text" name="email" placeholder="Email" style="display: block;"></div>
-        <textarea name="" id="textarea" cols="30" rows="10" placeholder="Рандомный текст" style="display: block; margin-bottom: 20px;"></textarea>
-    </div>
+    <form id="form">
+        <input type="text" name="name" placeholder="Имя">
+        <label for="name" class="invis">Incorrect</label>
+        <input type="text" name="phone" placeholder="Телефон +7(000)000-0000">
+        <label for="phone" class="invis">Incorrect</label>
+        <input type="text" name="email" placeholder="Email">
+        <label for="email" class="invis">Incorrect</label>
+        <input type="textarea" name="textarea" id="textarea" cols="30" rows="10" placeholder="Рандомный текст"></input>
+    </form>
     <button id="button">Отправить</button>
 </body>
 </html>
@@ -27,36 +37,28 @@
 <script>
     class Validator {
         constructor() {
-            this.a = 1;
             this.templates = {
                 name: /\b[a-zа-яё]+\b/i,
                 phone: /\b\+\d\(\d{3}\)\d{3}\-\d{4}/m,
-                email: /^[a-z0-9.]+@+[a-z0-9]+\.[a-z]{2,3}$/i
+                email: /^[a-z0-9.]+@+[a-z0-9]+\.[a-z]{2,3}$/i,
+                textarea: /./,
             }
             this.init();
         }
 
         init() {
-            document.getElementById('form').addEventListener('change', () => {
-                this.validate(this.a);
-            });
-            // document.getElementById('button').addEventListener('click', this.validate);
+            document.getElementById('form').addEventListener('change', this.validate.bind(this));
         }
 
-        validate(evt, a) {
-            console.log(a);
-            let val = evt.srcElement.value;
-            if (this.templates[evt.target.name]) {
-                let x = document.getElementById(evt.srcElement.id + 'label');
-                if (x != undefined) {
-                    x.remove();
-                }
-            } else {
-                evt.srcElement.style.border='solid';
-                evt.srcElement.style.borderColor='#e52213';
-                let err = `<label> Err </label>`;
-                evt.target.parentNode.insertAdjacentHTML('beforeend', err);
-            }
+        validate(evt) {
+            let correct = (this.templates[evt.target.name].test(evt.target.value))?true:false;
+            console.log(correct);
+            console.log(evt.target.classList.contains('error'));
+
+            if (!(evt.target.classList.contains('error') && !correct || !(evt.target.classList.contains('error')) && correct)) {
+                evt.target.classList.toggle('error');
+                evt.target.nextElementSibling.classList.toggle('invis');
+            } 
         }
     }
 
