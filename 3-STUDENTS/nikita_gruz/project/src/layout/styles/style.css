@@ -345,7 +345,7 @@ a {
 .promo {
   height: 613px;
   background-color: #e8e8e8;
-  background-image: url('https://raw.githubusercontent.com/kellolo/static/master/img/JS1_shop/promo.png');
+  background-image: url(../../assets/imgs/promo.png);
   background-repeat: no-repeat;
   background-position: center -52px;
   display: flex;
@@ -579,7 +579,7 @@ a {
 /* SUBSCRIBE */
 .subscribe {
   margin-bottom: 110px;
-  background: url('https://raw.githubusercontent.com/kellolo/static/master/img/JS1_shop/subscribe_main.png') center no-repeat;
+  background: url(../../assets/imgs/subscribe/subscribe_main.png) center no-repeat;
   background-size: cover; }
   .subscribe__inner {
     display: flex; }
