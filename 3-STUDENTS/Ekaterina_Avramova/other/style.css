@@ -78,12 +78,12 @@ small.error {
 }
 .done_val input,
 .done_val textarea {
-    border: #388E3C solid 3px;
+    border: #388E3C solid 2px;
 }
 .error_val input,
 .error_val textarea {
     position: relative;
-    border: #d32f2f solid 3px;
+    border: #d32f2f solid 2px;
 }
 .error_val > small.error {
     display: block;
