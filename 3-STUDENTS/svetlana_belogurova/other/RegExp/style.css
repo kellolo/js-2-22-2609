@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 1170px;
+
+}
+
+.container {
+    background-color: bisque;
+    padding: 70px 0px;    
+    margin: 0 auto;
+}
+
+.container form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    text-align: center;
+
+}
+
+#button {
+    width: 70px;
+    display: block;
+    margin: 0 auto;
+
+}
+
+.invalid {
+    border: solid 3px red;
+}
+
