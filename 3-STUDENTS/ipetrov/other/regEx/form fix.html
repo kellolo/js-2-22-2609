@@ -51,9 +51,7 @@
         }
 
         validate(evt) {
-            let correct = (this.templates[evt.target.name].test(evt.target.value))?true:false;
-            console.log(correct);
-            console.log(evt.target.classList.contains('error'));
+            let correct = this.templates[evt.target.name].test(evt.target.value)?true:false;
 
             if (!(evt.target.classList.contains('error') && !correct || !(evt.target.classList.contains('error')) && correct)) {
                 evt.target.classList.toggle('error');
