@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validation</title>
+</head>
+<body>
+    <form id="valid-form" action="#" onsubmit="event.preventDefault()">
+        <h3>Fill in all the fields</h3>
+        <input type="name" name="name" placeholder="Your name">
+        <input type="phone" name="phone" placeholder="Your phone">
+        <input type="email" name="email" placeholder="Your mail">
+        <textarea name="text" id="" cols="30" rows="10" placeholder="Text message"></textarea>
+        <button>Submit</button>
+    </form>
+</body>
+<style>
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+    form {
+        display: flex;
+        width: 400px;
+        flex-direction: column;
+    }
+    h3, input, textarea, button {
+        margin: 10px;
+    }
+    .data-incorrect {
+        outline: 0;
+        border: 2px solid red;
+        border-radius: 2px;
+    }
+</style>
+<script>
+    const TEMPLATES = {
+        name: /^[a-zа-яё]+[ ]{0,3}([a-zа-яё]+)?$/i,     //languages: EN, RU
+        phone: /^\+\d\(\d{3}\)\d{3}\-\d{4}$/m,
+        email: /^[a-z0-9.]+@+[a-z0-9]+\.[a-z]{2,3}$/i
+    }
+
+    class FormValidator {
+        constructor(idForm) {
+            this._idForm = idForm;
+            this._init();
+        }
+        
+        _init() {
+            document.getElementById(this._idForm).addEventListener('input', this._changeHandler);
+        }
+
+        _changeHandler(event) {
+            
+            if (TEMPLATES[event.target.name]) {
+                if (TEMPLATES[event.target.name].test(event.target.value.trim())) {
+                    document.getElementsByName(event.target.name)[0].classList.remove('data-incorrect');
+                } else {
+                    document.getElementsByName(event.target.name)[0].classList.add('data-incorrect');
+                }
+            }
+        }
+
+    }
+
+
+    /*MAIN PART*/
+
+    let validator = new FormValidator("valid-form");
+
+    /*END MAIN PART*/
+</script>
+</html>
