@@ -240,9 +240,6 @@ a {
     .header__search img {
       transition: transform .2s linear; }
   .header__bucket {
-    padding-left: 20px;
-    padding-bottom: 20px;
-    padding-top: 30px;
     position: relative; }
     .header__bucket:hover .header__cart {
       -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
@@ -1709,8 +1706,7 @@ a {
   border-radius: 5px;
   background-color: #ffffff;
   position: absolute;
-  top: 73px;
-  left: 8px;
+  top: 45px;
   z-index: 1; }
   .drop:before {
     content: "";
