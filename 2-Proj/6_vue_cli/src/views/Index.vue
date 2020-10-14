@@ -1,28 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clothes Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/8d73d6a795.js" crossorigin="anonymous"></script>
-    
-</head>
-
-<body>
-<div id="app">
+<template>
+  <div>
     <div class="page" id="page">
         <!-- HEADER -->
         <header class="header center">
             <div class="header__left">
                 <a href="" class="logo">
-                    <img class="logo__img" src="../src/assets/imgs/logo.png" alt="logo"><span class="logo__text">BRAN<span class="logo__text--last_letter">D</span></span>
+                    <img class="logo__img" src="../../src/assets/imgs/logo.png" alt="logo"><span class="logo__text">BRAN<span class="logo__text--last_letter">D</span></span>
                 </a>
                 <div class="header__form">
                     <button class="header__browse" onclick="displayMenu()">Browse</button>
                     <input class="header__input" type="text" name="name" placeholder="Search for Item...">
-                    <button class="header__search"><img src="../src/assets/imgs/search.png" alt="search"></button>
+                    <button class="header__search"><img src="../../src/assets/imgs/search.png" alt="search"></button>
                     <div id="mega_menu" class="mega_menu mega_menu--browse">
                         <div class="mega_menu__column">
                             <h6 class="mega_menu__title">Women</h6>
@@ -54,7 +42,7 @@
                 <div class="header__bucket">
                     <div class="header__count" id="basket-count"></div>
                     <button id="basket-toggler" @click="showBasket = !showBasket">
-                        <img class="header__cart" src="../src/assets/imgs/cart.png" alt="cart">
+                        <img class="header__cart" src="../../src/assets/imgs/cart.png" alt="cart">
                     </button>
                     <!-- DROP CART -->
                     <div class="drop" id="basket" v-show="showBasket">
@@ -65,7 +53,7 @@
                                     <img :src="item.productImg" alt="#" width="72" height="85"></a>
                                 <div class="drop__info">
                                     <a href="single.html" class="drop__title">{{item.productName}}</a>
-                                    <img src="../src/assets/imgs/drop_cart/stars.png" alt="#">
+                                    <img src="../../src/assets/imgs/drop_cart/stars.png" alt="#">
                                     <div class="drop__price">
                                         <span class="drop__count">
                                             {{ item.amount }}
@@ -78,7 +66,7 @@
                                     @click="remove(item.productId)" 
                                     class="drop__cancel fas fa-times-circle" 
                                     name="remove"
-                                >
+                                ></button>
                             </div>
 
                         </div>
@@ -136,7 +124,7 @@
                                 <li class="mega_menu__list"><a href="" class="mega_menu__link">Sweaters/Knits</a></li>
                                 <li class="mega_menu__list"><a href="" class="mega_menu__link">Jackets/Coats</a></li>
                             </ul>
-                            <img src="../src/assets/imgs/mega_menu.png" alt="#">
+                            <img src="../../src/assets/imgs/mega_menu.png" alt="#">
                         </div>
                     </div>
                 </li>
@@ -183,7 +171,7 @@
                                 <li class="mega_menu__list"><a href="" class="mega_menu__link">Sweaters/Knits</a></li>
                                 <li class="mega_menu__list"><a href="" class="mega_menu__link">Jackets/Coats</a></li>
                             </ul>
-                            <img src="../src/assets/imgs/mega_menu.png" alt="#">
+                            <img src="../../src/assets/imgs/mega_menu.png" alt="#">
                         </div>
                     </div>
                 </li>
@@ -235,28 +223,10 @@
         <section class="catalog center">
             <h3 class="catalog__header">Featured Items</h3>
             <p class="catalog__header_text">Shop for items based on what we featured in this week</p>
-            <div class="catalog__main" id="catalog">
-                
-                <div class="catalog__item" v-for="item of catalogItems" :key="item.productId">
-                    <button 
-                        class="catalog__bucket" 
-                        name="add"
-                        @click="add(item)"
-                    >
-                        <img class="catalog__hidden_img" 
-                        src="https://raw.githubusercontent.com/Eliseev88/geekbrains/3fdc76c4d5e84b1398b168e6239b8651dce01f6f/products/Forma_1_copy.svg" alt="#">
-                        <span class="catalog__hidden_text">Add to Cart</span>
-                    </button>
-                    <div class="catalog__photo">
-                        <img class="catalog__img" :src="item.productImg" alt="#">
-                    </div>
-                    <div class="catalog__content">
-                        <a class="catalog__name" href="#">{{ item.productName }}</a>
-                        <div class="catalog__price">${{ item.productPrice }}.00</div>
-                    </div>
-                </div>
+            
+            <Catalog />
 
-            </div> <!-- ./CATALOG__MAIN -->
+             <!-- ./CATALOG__MAIN -->
             <div class="catalog__button">
                 <a class="catalog__link" href="product.html">Browse All Product<i class="fas fa-long-arrow-alt-right"></i></a>
             </div>
@@ -264,7 +234,7 @@
         <!-- OFFER -->
         <section class="offer center">
             <div class="offer__left">
-                <img src="../src/assets/imgs/offer/offer_main.png" alt="#">
+                <img src="../../src/assets/imgs/offer/offer_main.png" alt="#">
                 <div class="offer__content">
                     <h2 class="offer_title">30% <span class="offer__last_word">OFFER</span></h2>
                     <h3 class="offer__subtitle">FOR WOMEN</h3>
@@ -272,21 +242,21 @@
             </div>
             <div class="offer__right">
                 <article class="offer__services">
-                    <div class="offer__icon"><img src="../src/assets/imgs/offer/offer_icon_1.svg" alt="#"></div>
+                    <div class="offer__icon"><img src="../../src/assets/imgs/offer/offer_icon_1.svg" alt="#"></div>
                     <div class="offer__text">
                         <div class="offer__sevrice_name">Free Delivery</div>
                         <div class="offer__service_descript">Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.</div>
                     </div>
                 </article>
                 <article class="offer__services">
-                    <div class="offer__icon"><img src="../src/assets/imgs/offer/offer_icon_2.svg" alt="#"></div>
+                    <div class="offer__icon"><img src="../../src/assets/imgs/offer/offer_icon_2.svg" alt="#"></div>
                     <div class="offer__text">
                         <div class="offer__sevrice_name">Sales &amp; discounts</div>
                         <div class="offer__service_descript">Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.</div>
                     </div>
                 </article>
                 <article class="offer__services">
-                    <div class="offer__icon"><img src="../src/assets/imgs/offer/offer_icon_3.svg" alt="#"></div>
+                    <div class="offer__icon"><img src="../../src/assets/imgs/offer/offer_icon_3.svg" alt="#"></div>
                     <div class="offer__text">
                         <div class="offer__sevrice_name">Quality assurance</div>
                         <div class="offer__service_descript">Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.</div>
@@ -298,7 +268,7 @@
         <div class="subscribe">
             <div class="subscribe__inner center">
                 <div class="subscribe__left">
-                    <img class="subscribe__avatar" src="../src/assets/imgs/subscribe/avatar.png" alt="#">
+                    <img class="subscribe__avatar" src="../../src/assets/imgs/subscribe/avatar.png" alt="#">
                     <div class="subscribe__content">
                         <div class="subscribe__text">“Vestibulum quis porttitor dui! Quisque viverra nunc mi, a pulvinar purus condimentum a. Aliquam condimentum mattis neque sed pretium”</div>
                         <div class="subscribe__author"><span>Bin Burhan</span> <br>Dhaka, Bd</div>
@@ -323,7 +293,7 @@
         <div class="contacts center">
             <div class="contacts__item contacts__item--brand">
                 <a href="index.html" class="logo">
-                    <img class="logo__img" src="../src/assets/imgs/logo.png" alt="logo"><span class="logo__text">BRAN<span class="logo__text--last_letter">D</span></span>
+                    <img class="logo__img" src="../../src/assets/imgs/logo.png" alt="logo"><span class="logo__text">BRAN<span class="logo__text--last_letter">D</span></span>
                 </a>
                 <div class="contacts__text">
                     <p class="contacts__paragraph">Objectively transition extensive data rather than cross functional solutions. Monotonectally syndicate multidisciplinary materials before go forward benefits. Intrinsicly syndicate an expanded array of processes and cross-unit partnerships.</p>
@@ -388,7 +358,14 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</template>
 
-</body>
-</html>
+<script>
+import Catalog from '../components/Catalog.vue'
+export default {
+  name: 'Home',
+  components: {
+    Catalog
+  }
+}
+</script>
