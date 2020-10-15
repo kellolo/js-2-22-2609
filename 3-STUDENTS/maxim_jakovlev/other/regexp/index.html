@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form-input {
+            display: block;
+        }
+        
+        .err {
+            border: 2px solid red;
+        }
+        
+        .message {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="form">
+        <input class="form-input" type="text" name="name" placeholder="Имя">
+        <input class="form-input" type="text" name="phone" placeholder="Телефон">
+        <input class="form-input" type="text" name="email" placeholder="Email">
+        <textarea name="commit" id="" cols="30" rows="10"></textarea>
+    </div>
+    <button id="send">Отправить</button>
+
+
+
+    <script>
+        // ДЗ 1
+        const txt = "Lorem ipsum, 'dolor sit amet consectetur' adipisicing. can't  move";
+        let result = txt.replace(/ '/g, " \"");
+        result = result.replace(/' /g, "\" ");
+        console.log(result);
+
+
+        // ДЗ 2*
+        class Validator {
+            constructor(name = '', phone = '', email = '') {
+                this.element = null;
+                this.name = name;
+                this.phone = phone;
+                this.email = email;
+                this.templates = {
+                    name: /\b[a-zа-яё]+\b/i,
+                    //phone: /\b\+\d\(\d{3}\)\d{3}\-\d{4}/m,
+                    phone: /\+7\(\d{3}\)\d{3}-\d{4}/,
+                    email: /^[a-z0-9._-]+@+[a-z0-9]+\.[a-z]{2,3}$/i,
+                };
+                this.init();
+            }
+
+            init() {
+                //document.getElementById('form').addEventListener('change', this.validate.bind(this));
+                //document.getElementById('form').addEventListener('change', this.validate); // Так было
+                //document.getElementById('send').addEventListener('click', this.validate);
+                this.element = document.getElementById('form');
+                this.handleActions();
+
+            }
+
+            handleActions() {
+                this.element.addEventListener('change', evt => {
+                    const str = evt.srcElement.value;
+                    if (this.templates[evt.target.name].test(str)) {
+                        console.log("валидно")
+                        evt.srcElement.classList.remove('err')
+                            //const good = `<label class='message'> Good </label>`;
+                        evt.srcElement.target.parentNode.insertAdjacentHTML('beforeend', "");
+                    } else {
+                        console.log("невалидно");
+                        evt.srcElement.classList.add('err')
+                        const err = `<label class='message'> Err </label>`;
+                        evt.target.parentNode.insertAdjacentHTML('beforeend', err);
+                    }
+
+                })
+            }
+        }
+
+        let valid = new Validator();
+    </script>
+</body>
+
+</html>

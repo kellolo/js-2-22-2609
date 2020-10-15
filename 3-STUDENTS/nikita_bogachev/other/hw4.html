@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma Valid</title>
+    <style>
+        .textarea{ resize: none; height: 100px!important;}.invalid-forma {background: radial-gradient(red, transparent);}.input-text {display: block;border: 1px solid #356EAD; box-sizing: border-box; border-radius: 10px; opacity: 0.4; width: 100%; height: 50px;}.container {margin: 0 auto; background: #FFFFFF; box-shadow: 5px 10px 50px rgba(16, 112, 177, 0.2); border-radius: 10px; max-width: 340px; padding: 56px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="#">
+            <label>Имя пользователя<input type="text" id="user-name" placeholder="Ivan" class="input-text"></label>
+            <label>Телефон<input type="tel" id="user-tel" placeholder="+7(000)000-0000" class="input-text"></label>
+            <label>Почта<input type="email" id="user-email" placeholder="@mail.ru" class="input-text"></label>
+            <label>Ваше сообщение<textarea name="user-text" id="user-text" cols="30" rows="10" class="input-text textarea" ></textarea></label>
+            <button id="btn">Проверить</button>
+        </form>
+         
+            <p class="test">'Put on your jacket, please,' mother said' to him. 'It's freezing today.'</p>
+            <button id="change">Заменить кавычки</button>
+            <p class="test1"></p>
+        
+    </div>
+    <script>
+        //Задание 1+2
+        let str = document.querySelector('.test').textContent;
+        let regexp = /^'|(\s)'|'(\s)|'$/g;
+        document.querySelector('#change').addEventListener('click', () => {
+            let strNew = str.replace(regexp, '"');
+            document.querySelector('.test1').textContent = strNew;
+        })
+
+        class ValidForma {
+            constructor(container){
+                this.container = document.querySelector(container);
+                this.userName = document.querySelector('#user-name');
+                this.userTel = document.querySelector('#user-tel');
+                this.userEmail = document.querySelector('#user-email')
+                this.test = document.querySelector('#user-text')
+                this.regexpName =/^[a-zA-ZА-ЯЁа-яё]{3,8}$/g;
+                this.regexpTel =/^(\+7\(\d{3}\)\d{3}-\d{4})$/g;
+                this.regexpEmail = /([\w|\d]{2}(\w|\.|-)[\w|\d]+@[\w|\d]{4}\.\w{2})/g;
+                this.regexpTest = /^\d|\w$/
+                this.init();
+            }
+
+            init(){
+                this.container.addEventListener('click', (evt) =>{
+                    if (evt.target.id == 'btn'){
+                        this.checkValid(this.userName, this.regexpName);
+                        this.checkValid(this.userTel, this.regexpTel);
+                        this.checkValid(this.userEmail, this.regexpEmail);
+                        this.checkValid(this.test, this.regexpTest);
+                        evt.preventDefault();
+                    }
+                } )
+            }
+            checkValid(idInput, regexp){
+                let wrapperInput = idInput;
+                let inputValid= idInput.value;
+                let check = inputValid.match(regexp);
+                if (!check){
+                    wrapperInput.classList.add('invalid-forma');
+                    wrapperInput.placeholder = 'Error'
+                } else {wrapperInput.classList.remove('invalid-forma')}
+            }
+        }
+        let forma = new ValidForma(".container")
+    </script>
+</body> 

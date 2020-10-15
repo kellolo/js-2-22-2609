@@ -1,21 +1,15 @@
-import Components from './parentComponents.js'
-import { RenderCart } from './render'
+import List from './LIST.js'
 
-export default class Basket extends Components {
-    constructor(container = '#basket', url = '/basket.json'){
-        super(container = '#basket', url = '/basket.json')
+export default class Basket extends List {
+    constructor(url = '/basket.json', container = '#basket', ){
+        super('#basket-items', url,)
         this.shown = false;
-        this.itemsContainer = document.querySelector('#basket-items');
+        this.wrapper = document.querySelector(container);
     }
-
-    _render() {
-       let render = new RenderCart(this.items, this.itemsContainer)
-       this._sum();
-    };
-    handleActions() {
+    _handleActions() {
         document.querySelector('#basket-toggler').addEventListener('click', () => {
             this.shown = !this.shown;
-            this.container.classList.toggle('invisible');
+            this.wrapper.classList.toggle('invisible');
         });
 
         this.container.addEventListener('click', ev => {

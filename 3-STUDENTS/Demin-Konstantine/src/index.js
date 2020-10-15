@@ -1,6 +1,5 @@
 import app from './components'
-// import basket from './basket'
-// import catalog from './catalog'
-// basket();
-// catalog();
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './layout/styles/style.css'
 app();
