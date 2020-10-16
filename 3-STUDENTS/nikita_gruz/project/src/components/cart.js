@@ -12,7 +12,7 @@
 //     });
 // }, 300);
 
-export default {
+let basket = {
     items: [],
     shown: false,
     container: null,

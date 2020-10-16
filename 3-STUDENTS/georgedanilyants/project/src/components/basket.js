@@ -1,63 +1,16 @@
-// setTimeout(() => {
-//     let basketBtns = document.querySelectorAll('.catalog__bucket');
+import List from './LIST.js'
 
-//     basketBtns.forEach(function (btn) {
-//         btn.addEventListener('click', function (event) {
-//             let id = event.currentTarget.dataset.id;
-//             let price = event.currentTarget.dataset.price;
-//             let name = event.currentTarget.dataset.name;
-//             let image = event.currentTarget.dataset.image;
-//             basket.addProduct({ id: id, price: price, name: name, image: image,});
-//         });
-//     });
-// }, 300);
-
-export default class Basket {
+export default class Basket extends List {
     constructor(url = '/basket.json', container = '#basket') {
-        this.items = [];
+        super('#basket-items', url);
         this.shown = false;
-        this.container = document.querySelector(container);
-        this.itemsContainer = document.querySelector('#basket-items');
-        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON'  + url;
-        this._init();
-    }
-    
-    _init() {
-        this._getData(this.url)
-            .then(basket => {this.items = basket.content})
-            .finally(() => {
-                this._render();
-                this._handleActions();
-            })
-    }
-
-    _getData(url) {
-        return fetch(url) //JSON
-            .then(data => data.json()) // JSON >>> Obj/Array
-    }
-
-    _render() {
-        let str = '';
-        this.items.forEach(item => {
-            str += `<div class="drop__box" data-id="${item.productId}">
-                        <a class="drop__img" href="single.html"><img src="${item.productImg}" alt="#" width="72" height="85"></a>
-                        <div class="drop__info">
-                            <a href="single.html" class="drop__title">${item.productName}</a>
-                            <img src="../src/assets/imgs/drop_cart/stars.png" alt="#">
-                            <div class="drop__price"><span class="drop__count" data-id="${item.productId}">${item.amount}</span><span class="drop__span">
-                            x
-                            </span>$${item.productPrice}</div>
-                        </div>
-                        <button class="drop__cancel fas fa-times-circle" data-id="${item.productId}" name="remove">
-                    </div>`;
-        });
-        this.itemsContainer.innerHTML = str;
+        this.wrapper = document.querySelector(container);
     }
 
     _handleActions() {
         document.querySelector('#basket-toggler').addEventListener('click', () => {
             this.shown = !this.shown;
-            this.container.classList.toggle('invisible');
+            this.wrapper.classList.toggle('invisible');
         });
 
         this.container.addEventListener('click', ev => {

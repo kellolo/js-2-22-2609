@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+  </style>
+  <title>Regular expressions</title>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Regular expressions</h1>
+  <form action="https://jsonplaceholder.typicode.com/posts" method="post">
+    <div class="form-grup">
+      <label for="fname">Имя:</label>
+      <input type="text" class="form-control" id="fname" name="fname" placeholder="Олег Иванович">
+      <span class="errors"></span>
+    </div>
+    <div class="form-grup">
+      <label for="phone">Телефон:</label>
+      <input type="tel" class="form-control" id="phone" name="phone" placeholder="+7 (999)-999-99-99">
+      <span class="errors"></span>
+    </div>
+    <div class="form-grup">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="olegivanovich@mail.com">
+      <span class="errors"></span>
+    </div>
+    <div class="form-grup">
+      <label for="text">Сообщение:</label>
+      <input type="text" class="form-control" id="text" name="text" placeholder="Введите своё сообщение">
+      <span class="errors"></span>
+    </div>
+    <button type="submit" id="send-form">Отправить</button>
+  </form>
+
+  <script>
+    const types = {
+      fname: /[A-Za-zА-Яа-яЁё ]{3,16}/i,
+      phone: /(8|7)\d{10}/ig,
+      email: /[a-z0-9._%+-]+@[a-z0-9-]+.+.[a-z]{2,4}/ig,
+      text: /[\s\wА-ЯЁ;:,.!?]+/ig
+    }
+    class Validator {
+      constructor(){
+        this.form = document.querySelector('form'),
+        this.regExpNamber = /(8|7)\d{10}/ig
+        this.isValidate = false,
+        this.formControl = document.querySelector('.form-control').style,
+        this.init()
+      }
+      init(){
+        this.form.addEventListener("submit", (event) => { //перехватываем событие у браузера
+          event.preventDefault(); //и останавливаем его
+        })
+        this.focusCheck();
+        if(this.isValidate){
+          this.submit();
+        }
+      }
+      focusCheck() {
+        let objeсtKey = Object.keys(types);
+        for (let i = 0; i < objeсtKey.length; i++) {
+          this.form.elements[i].addEventListener("blur", () => { //проверка по уходу с факуса
+            this.checkReg(this.form.elements[i]);
+          });
+        }
+      }
+      checkReg(elem){
+        console.log(types[elem.id].test(elem.value));// почему они оба true???
+        console.log(!types[elem.id].test(elem.value));//почему они оба true???
+        console.log(types[elem.id]);
+        if (!types[elem.id].test(elem.value) && elem.value !== "") { // проверка на соответствие регулярки
+          elem.nextElementSibling.textContent = "Введите корректное значение";
+          this.isValidate = false;
+          elem.style.borderColor = 'red';
+          console.log('не кор');
+        } else if (elem.value == "") {
+          elem.nextElementSibling.textContent = "Поле обязательно к заполнению";
+          this.isValidate = false;
+          elem.style.borderColor = 'red';
+          console.log('пусто');
+        } else if (types[elem.id].test(elem.value)) {
+          elem.nextElementSibling.textContent = "";
+          this.isValidate = true;
+          elem.style.borderColor = 'black';
+          console.log('все ок');
+        } else {
+          console.log('ошибка');
+        }
+
+      }
+      submit() {
+        alert("Данные отправленны");
+        this.form.reset();
+      }
+    }
+    let valid = new Validator();
+  </script>
+</body>
+
+</html>

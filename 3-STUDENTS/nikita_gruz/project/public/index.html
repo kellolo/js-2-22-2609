@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clothes Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../src/layout/styles/style.css">
     <script src="https://kit.fontawesome.com/8d73d6a795.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-
+<div id="app">
 <div class="page" id="page">
     <!-- HEADER -->
     <header class="header center">
@@ -50,11 +51,11 @@
             </div>
         </div>
         <div class="header__right">
-            <div class="header__bucket">
+            <div class="header__bucket"> 
                 <div class="header__count" id="basket-count"></div>
-                <button id="basket-toggler"><img class="header__cart" src="../src/assets/imgs/cart.png" alt="cart"></button>
+                <button @click="show = !show"><img class="header__cart" src="../src/assets/imgs/cart.png" alt="cart"></button>
                 <!-- DROP CART -->
-                <div class="drop invisible" id="basket">
+                <div class="drop invisible" >
                     <div id="basket-items">
                         
                     </div>
@@ -213,6 +214,24 @@
         <p class="catalog__header_text">Shop for items based on what we featured in this week</p>
         <div class="catalog__main" id="catalog">
        <!-- catalog_content_here      -->
+       <div class="catalog__item item" v-for="item of items" id="${item.productId}">
+        <button 
+            class="catalog__bucket" 
+            name="add"
+            @click="add(item)"
+        >
+            <img class="catalog__hidden_img" 
+            src="https://raw.githubusercontent.com/Eliseev88/geekbrains/3fdc76c4d5e84b1398b168e6239b8651dce01f6f/products/Forma_1_copy.svg" alt="#">
+            <span class="catalog__hidden_text">Add to Cart</span>
+        </button>
+        <div class="catalog__photo">
+            <img class="catalog__img" :src="item.productImg" alt="#">
+        </div>
+        <div class="catalog__content">
+            <a class="catalog__name" href="#">{{ item.productName }}</a>
+            <div class="catalog__price">${{ item.productPrice }}.00</div>
+        </div>
+    </div>
         </div> <!-- ./CATALOG__MAIN -->
         <div class="catalog__button">
             <a class="catalog__link" href="product.html">Browse All Product<i class="fas fa-long-arrow-alt-right"></i></a>
@@ -344,7 +363,14 @@
         <!-- Сюда рендерятся картинки -->
     </div>
 </div>
-
+    <script src="../src/components/app.js"></script>
+    <script>catalog.init();</script>
+    <script src="../src/components/gallery.js"></script>
+    
+</div>
+<!-- Подключение vue -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="../src/script.js"></script>
 </body>
 
 </html>
