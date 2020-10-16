@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            display: block;
+            margin: 10px 0;
+        }
+        .error {
+            border: 2px solid red;
+        }
+        textarea {
+            margin-top: 20px;
+        }
+        .invis {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form id="form">
+        <input type="text" name="name" placeholder="Имя">
+        <label for="name" class="invis">Incorrect</label>
+        <input type="text" name="phone" placeholder="Телефон +7(000)000-0000">
+        <label for="phone" class="invis">Incorrect</label>
+        <input type="text" name="email" placeholder="Email">
+        <label for="email" class="invis">Incorrect</label>
+        <input type="textarea" name="textarea" id="textarea" cols="30" rows="10" placeholder="Рандомный текст"></input>
+    </form>
+    <button id="button">Отправить</button>
+</body>
+</html>
+
+<script>
+    class Validator {
+        constructor() {
+            this.templates = {
+                name: /\b[a-zа-яё]+\b/i,
+                phone: /\b\+\d\(\d{3}\)\d{3}\-\d{4}/m,
+                email: /^[a-z0-9.]+@+[a-z0-9]+\.[a-z]{2,3}$/i,
+                textarea: /./,
+            }
+            this.init();
+        }
+
+        init() {
+            document.getElementById('form').addEventListener('change', this.validate.bind(this));
+        }
+
+        validate(evt) {
+            let correct = this.templates[evt.target.name].test(evt.target.value)?true:false;
+
+            if (!(evt.target.classList.contains('error') && !correct || !(evt.target.classList.contains('error')) && correct)) {
+                evt.target.classList.toggle('error');
+                evt.target.nextElementSibling.classList.toggle('invis');
+            } 
+        }
+    }
+
+    let valid = new Validator();
+</script>

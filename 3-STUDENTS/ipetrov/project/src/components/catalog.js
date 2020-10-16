@@ -1,9 +1,7 @@
-import ancientParent from "./ancient";
-
-export default class Catalog extends ancientParent {
-    constructor (basket, url = '/catalog.json', container = '#catalog') { 
-        super(url, container);
-        this.basket = basket;
+import List from './LIST.js'
+export default class Catalog extends List {
+    constructor(basket, url = '/catalog.json', container = '#catalog') {
+        super(container, url, basket);
     }
 
     _handleActions() {

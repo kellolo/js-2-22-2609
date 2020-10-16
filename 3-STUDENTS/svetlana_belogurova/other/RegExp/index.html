@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        
+        <form action="post" id="form">
+
+            <label for="name"></label>
+            <input type="text" name="name" id="name" placeholder="Name" required>
+            <label for="email"></label>
+            <input name="email" type="text" id="email"  placeholder="Email" required>
+            <label for="phone"></label>
+            <input type="text" name="phone" id="phone" placeholder="Telephone Number +7(000)000-0000" required>
+            <input type="textarea" name="comment" id="comment" placeholder="Write Your Comment" rows="50" cols="30" required>
+        
+        </form>
+
+        <button id="button">Submit</button>
+    </div>
+    <script src="regExp.js"></script>
+</body>
+</html>

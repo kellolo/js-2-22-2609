@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        strong {
+            display: block
+        }
+
+        #catalog {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .item {
+            padding: 10px;
+            border: 1px solid red;
+            margin: 10px;
+            font-family: sans-serif;
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .item h1 {
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="show = !show">Hide/Show</button>
+        <div id="catalog" v-show="show">
+            <div class="item" v-for="item of items">
+                <h1>{{ item.productName }}</h1>
+                <img :src="item.productImg" alt="" width="80px">
+
+                <strong>${{ item.productPrice }}</strong>
+                <button @click="add(item)">Add</button>
+            </div>
+
+        </div>
+        
+        <!-- <strong v-for="item of items">{{ item.productName }}</strong> -->
+        <!--h1> {{ hello }} </h1>
+        <strong> {{ status }} </strong> <br />
+        <button @click="clicker(1)">Click</button>
+        <button @click="clicker(0)">VVP</button>
+        <p> {{ counter }} </p>
+
+        <form action="">
+            <button @click.prevent="status = 'some'">ok</button>
+        </form-->
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                catalogURL: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json',
+                items: [],
+                show: true
+                // hello: 'Hello Vue 123',
+                // status: '',
+                // counter: 0
+            },
+            methods: {
+                // clicker(status) {
+                //     console.log(status)
+                //     this.status = status ? 'Увеличиваем число' : 'Обнулено';
+                //     this.counter = status ? this.counter + 1 : 0;
+                // }
+                _get(url) {
+                    return fetch(url).then(d => d.json())
+                },
+                add(item) {
+                    console.log('Added: ' + item.productName)
+                }
+            },
+            //Hooks
+            mounted() {
+                this._get(this.catalogURL)
+                .then(items => { 
+                    this.items = items; console.log(this.items) 
+                })
+            }
+        })
+    </script>
+</body>
+</html>

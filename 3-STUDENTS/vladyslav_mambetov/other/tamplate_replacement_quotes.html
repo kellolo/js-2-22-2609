@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template replacement quotes</title>
+    <script>
+        str = "Here there's a 'regular expression'";
+        
+        reg1 = new RegExp('\\w\\\'\\B');    //reg1 = /\w\'\B/;
+        reg2 = new RegExp('\\B\\\'\\w');    //reg1 = /\B\'\w/;
+        str = str.replace(reg1, '"').replace(reg2, '"');
+        
+        console.log(str);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
