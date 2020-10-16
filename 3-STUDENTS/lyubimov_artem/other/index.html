@@ -3,29 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    <div class="conteiner">
-        <div class="size">
-            <div class="item-header">Размер бургера</div>
-            <button class="size-btn-big">Большой</button>
-            <button class="size-btn-little">Маленький</button>
-        </div>
-        <div class="topping">
-            <div class="item-header">Начинка</div>
-            <button class="topping-btn-cheese">Добавить сыр</button>
-            <button class="topping-btn-salat">Добавить салат</button>
-            <button class="topping-btn-potato">Добавить картофель</button>
-        </div>
-        <div class="dressing">
-            <div class="item-header">Соус</div>
-            <button class="dressing-btn-spice">Добавить приправу</button>
-            <button class="dressing-btn-mayo">Добавить майонез</button>
-        </div>
-    </div>
-    <div class="sum-info"></div>
-    <script src="main.js"></script>
+    <h3>Original Text</h3>
+    <p class="text-original">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus excepturi labore sapiente ut consectetur ad illo doloremque natus rem pariatur laboriosam maiores, sequi necessitatibus provident reprehenderit saepe quo aut soluta, cupiditate vero 'ratione' molestias. Quibusdam laboriosam labore 'corrupti' Sunt magni non ipsam minima animi provident ullam. Alias modi, quia libero harum debitis veniam sunt commodi sint? Tenetur, at expedita autem placeat enim quibusdam, aliquid error delectus maxime unde non quisquam provident. Soluta perferendis ullam quibusdam. Quos praesentium eius 'incidunt' sequi, ab provident cum quod aperiam. Eligendi iusto maiores molestias eum provident voluptatibus ipsa quibusdam consequuntur debitis doloribus, libero quisquam repellendus.</p>
+   
+   <script>
+        //---------Домашнее задание к уроку 4
+
+        //Задание 1
+        let text1 = document.querySelector('.text-original').textContent
+        let text2 = text1.replace (/\'/gi, '"')
+        
+        console.log(text2)
+    </script>
 </body>
 </html>
