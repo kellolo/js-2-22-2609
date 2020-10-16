@@ -33,9 +33,7 @@
 </template>
 
 <script>
-import itemProp from './Item.vue'
 export default {
-    props: ['itemProp'],
     data() {
         return {
             items: [],

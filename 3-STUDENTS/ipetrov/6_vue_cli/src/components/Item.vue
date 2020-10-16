@@ -22,11 +22,10 @@
 <script>
 export default {
     props: ['itemProp'],
-    data() {
-        return {
-            methods: {
-                
-            }
+    // попробую пробросить клик выше
+    methods: {
+        add(itemProp) {
+            this.$emit('add', itemProp)
         }
     }
 }
