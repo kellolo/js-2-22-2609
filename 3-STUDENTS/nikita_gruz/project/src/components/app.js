@@ -6,3 +6,4 @@ function displayMenu() {
         x.style.display = "block";
     }
 }
+

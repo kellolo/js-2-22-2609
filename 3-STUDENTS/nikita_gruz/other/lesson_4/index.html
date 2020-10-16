@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let testText = 'single quotes \' \' transform to double quotes \"\" except aren\'t  and isn\'t <br>'
+
+        const regexp = /: '|'/g;
+        let replacedText = testText.replace(regexp,'\"');
+    
+        document.write(testText);
+        document.write(replacedText);
+
+    </script>
+------------------------------------------------------------------------
+    <form action="submit">
+        <input type="text" id="name"> Имя<br>
+        <input type="tel" id="phone"> Телефон<br>
+        <input type="email" id="email"> Почта<br>
+        <input type="button" id="send" value="проверить">
+    </form>
+
+    <script>
+        const regexpName = /[a-zA-zа-яА-Я]+/g;
+        const regexpPhone = /[0-9]/g;
+        const regexpEmail = /^([a-z0​-9​_\.-]+)@([a-z0​-9​_\.-]+)\.([a-z\.]{​2​,​6​})$/;
+
+        //удаление лишних символов из телефонной строки
+        let phoneDelete = regexpPhone.replace(/\D/g, '');
+        
+        if (regexpName.test(document.getElementById(name))) {
+            document.getElementById(name) += 'style="background-color: green;"'
+        }
+
+
+    </script>
+</body>
+</html>
