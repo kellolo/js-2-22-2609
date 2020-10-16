@@ -1,12 +1,10 @@
-import Components from './parentComponents.js';
-import { RenderCatalog } from './render'
+import List from './LIST.js';
 
-export default class Catalog extends Components {
+export default class Catalog extends List {
     constructor(basket, container = '#catalog', url = '/catalog.json'){
-        super(container = '#catalog', url = '/catalog.json'),
-        this.basket = basket;
+        super(container, url, basket);
     }
-    handleActions() {
+    _handleActions() {
         this.container.addEventListener('click', evt => {
             if (evt.target.name == 'add' || evt.target.parentNode.name == 'add') {
                 let datas = evt.target.name == 'add' ? evt.target.dataset : evt.target.parentNode.dataset;
@@ -22,7 +20,4 @@ export default class Catalog extends Components {
             }
         })
     };
-    _render() {
-        let render = new RenderCatalog(this.items, this.container)
-    }
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Форма</title>
+<link rel="stylesheet" href="style.css">
+<script src="template.js" async></script>
+</head>
+<body>
+    <div class="form">
+        <label id="name">
+            <input type="text" name="name" placeholder="Имя">
+            <small class="error">Имя указано некорректно</small>
+        </label>
+        <label id="phone">
+            <input type="tel" name="phone" placeholder="Телефон">
+            <small class="error">Введите номер мобильного телефона в формате +7(000)000-00-00</small>
+        </label>
+        <label id="email">
+            <input type="email" name="email" placeholder="E-mail">
+            <small class="error">Введите email в формате example@site.com</small>
+        </label>
+        <label id="message">
+            <textarea placeholder="Текст" name="message"></textarea>
+            <small class="error">Заполните текстовое поле</small>
+        </label>
+        <button class="button">Отправить</button>
+    </div>
+</body>
+</html>

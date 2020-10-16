@@ -1,44 +1,18 @@
-import Parent from "./parent";
+import List from "./LIST.js";
 
-export default class Basket extends Parent {
+export default class Basket extends List {
     constructor(url = '/basket.json', container = '#basket') {
-        super(container, url);
+        super('#basket-items', url);
         this.shown = false;
-        this.itemsContainer = document.querySelector('#basket-items');
-        this._init();
+        this.wrapper = document.querySelector(container);
+
     }
     
-    _init () {
-            this._getData(this.url)
-            .then(basket => {this.items = basket.content})
-            .finally(() => {
-                this._render();
-                this._handleActions();
-            })
-    };
-    
-    _render() {
-        let str = '';
-        this.items.forEach(item => {
-            str += `<div class="drop__box" data-id="${item.productId}">
-                        <a class="drop__img" href="single.html"><img src="${item.productImg}" alt="#" width="72" height="85"></a>
-                        <div class="drop__info">
-                            <a href="single.html" class="drop__title">${item.productName}</a>
-                            <img src="../src/assets/imgs/drop_cart/stars.png" alt="#">
-                            <div class="drop__price"><span class="drop__count" data-id="${item.productId}">${item.amount}</span><span class="drop__span">
-                            x
-                            </span>$${item.productPrice}</div>
-                        </div>
-                        <button class="drop__cancel fas fa-times-circle" data-id="${item.productId}" name="remove" >
-                         </button>
-                    </div>`;
-        });
-        this.itemsContainer.innerHTML = str;
-    }
+
     _handleActions() {
         document.querySelector('#basket-toggler').addEventListener('click', () => {
             this.shown = !this.shown;
-            this.container.classList.toggle('invisible');
+            this.wrapper.classList.toggle('invisible');
         });
 
         this.container.addEventListener('click', ev => {

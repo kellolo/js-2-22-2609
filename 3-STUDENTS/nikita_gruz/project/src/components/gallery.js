@@ -108,3 +108,5 @@ setTimeout(() => {
         }
     }
  gallery.init();
+
+
