@@ -1666,7 +1666,6 @@ a {
       left: 90%; }
   .mega_menu--browse {
     visibility: visible;
-    display: none;
     top: 36px;
     left: 0; }
     .mega_menu--browse:before, .mega_menu--browse:after {
