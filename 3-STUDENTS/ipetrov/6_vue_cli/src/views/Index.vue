@@ -4,7 +4,7 @@
         <!-- HEADER -->
         <header class="header center">
             <HeaderLeft />
-            <HeaderRight />
+            <Basket ref="basket" />
         </header>
         <!-- NAV -->
           <Nav />
@@ -24,7 +24,7 @@
             <h3 class="catalog__header">Featured Items</h3>
             <p class="catalog__header_text">Shop for items based on what we featured in this week</p>
 
-            <Catalog @add='add'/>
+            <Catalog @add='_add'/>
 
             <!-- ./CATALOG__MAIN -->
             <div class="catalog__button">
@@ -65,7 +65,7 @@ import Offer from '../components/UIcomp/Offer.vue'
 import Contacts from '../components/UIcomp/Contacts.vue'
 import Subscribe from '../components/UIcomp/Subscribe.vue'
 import Footer from '../components/UIcomp/Footer.vue'
-import HeaderRight from '../components/Basket.vue'
+import Basket from '../components/Basket.vue'
 export default {
   name: 'Home',
   components: {
@@ -77,7 +77,12 @@ export default {
     Contacts,
     Subscribe,
     Footer,
-    HeaderRight
+    Basket
+  },
+  methods: {
+      _add(pl) {
+          this.$refs.basket.add(pl)
+      }
   }
 }
 </script>

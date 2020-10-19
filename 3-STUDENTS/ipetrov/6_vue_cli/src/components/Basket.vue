@@ -1,39 +1,30 @@
 <template>
-<div class="header__right">
-    <div class="header__bucket">
-        <div class="header__count" id="basket-count"></div>
-        <button @click="show = !show"><img class="header__cart" src="../../src/assets/imgs/cart.png" alt="cart"></button>
-        <!-- DROP CART --> 
-        <div id="basket" class="drop" v-show="show">
-            <div id="basket-items" v-for="item of items" v-bind:key="item.productId">
-                <div class="drop__box">
-                    <a class="drop__img" href="single.html"><img :src="item.productImg" alt="#" width="72" height="85"></a>
-                    <div class="drop__info">
-                        <a href="single.html" class="drop__title">{{item.productName}}</a>
-                        <img src="../../src/assets/imgs/drop_cart/stars.png" alt="#">
-                        <div class="drop__price"><span class="drop__count">{{item.amount}}</span><span class="drop__span">
-                        x
-                        </span>${{item.productPrice}}</div>
-                    </div>
-                    <button class="drop__cancel fas fa-times-circle" name="remove" 
-                    @click="remove(item)">
-                    </button>
+    <div class="header__right">
+        <div class="header__bucket">
+            <div class="header__count" id="basket-count"></div>
+            <button @click="show = !show"><img class="header__cart" src="../../src/assets/imgs/cart.png" alt="cart"></button>
+            <!-- DROP CART --> 
+            <div id="basket" class="drop" v-show="show">
+                <div id="basket-items">
+                    <Item v-for="item of items" v-bind:key="item.productId" :item="item" type="basket"/>
+                    
                 </div>
+                <div class="drop__total">
+                    <div>TOTAL</div>
+                    <div id="total-sum"></div>
+                </div>
+                <a href="checkout.html" class="drop__link">Checkout</a>
+                <a href="#" class="drop__link">Go to cart</a>
             </div>
-            <div class="drop__total">
-                <div>TOTAL</div>
-                <div id="total-sum"></div>
-            </div>
-            <a href="checkout.html" class="drop__link">Checkout</a>
-            <a href="#" class="drop__link">Go to cart</a>
         </div>
+        <a class="header__link" href="#">My Account</a>
     </div>
-    <a class="header__link" href="#">My Account</a>
-</div>
 </template>
 
 <script>
+import Item from "./Item.vue"
 export default {
+    components: { Item },
     data() {
         return {
             items: [],
@@ -49,14 +40,18 @@ export default {
         add(item) {
             let find = this.items.find(el => el.productId == item.productId);
             if (!find) {
-                this.items.push(Object.assign(item, { amount: 1 }));
+                this.items.push(Object.assign({}, item, { amount: 1 }));
             } else {
                 find.amount++;
             }
         },
-        remove(item) {
-            let find = this.items.find(el => el.productId == item.productId);
-            this.items.splice(this.items.indexOf(find), 1);
+        remove(id) {
+            let find = this.items.find(el => el.productId == id);
+            if (find.amount > 1) {
+                find.amount--;
+            } else {
+                this.items.splice(this.items.indexOf(find), 1);
+            }
         }
     },
     mounted() {
