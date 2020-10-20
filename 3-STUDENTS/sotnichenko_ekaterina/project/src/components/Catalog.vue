@@ -1,36 +1,21 @@
 <template>
   <div class="catalog__main" id="catalog">
-      <ItemCatalog 
-        v-for="item of items" 
+      <Item
+        v-for="item of allItemsCatalog" 
         :key="item.productId" 
-        :item="item" 
-        @add="add(item)" />
+        :item="item" />
   </div>
 </template>
 
 <script>
-import ItemCatalog from './ItemCatalog'
-import Basket from './Basket'
-
+import Item from './Item'
+import {mapGetters, mapActions} from 'vuex';
 export default {
-    components: { ItemCatalog },
-    data() {
-        return {
-            items: [],
-            url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json'
-        }
-    },
+    components: { Item },
+    computed: mapGetters(['allItemsCatalog']),
     mounted() {
-        this.get(this.url).then(items => this.items = items)
+        this.fetchItemsCatalog();
     },
-    methods: {
-        get(url) {
-            return fetch(url)
-                .then(data => data.json())
-        },
-    add(item) {
-            return console.log('я не знаю как отправить данные в корзину   ' + item.productId);
-        }
-    }
+    methods: mapActions(['fetchItemsCatalog']),
 }
 </script>
