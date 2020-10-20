@@ -2,7 +2,6 @@
     <div class="subscribeBg mt-5 pt-5 pb-5">
         <div class="container">
             <div class="row pb-5 pt-0 pt-lg-5">
-
                 <div class="d-flex col-lg-6 px-0 mt-5 mb-5 pr-0 pr-lg-5">
                     <div class="col-2 col-md-2 d-flex align-self-start">
                         <img src="../../../src/assets/imgs/Avatar.png" alt="Avatar">
@@ -30,7 +29,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="subscribeEmail d-flex justify-content-center flex-column align-items-center col-lg-6 border-left ">
                     <div class="subscribeEmailHead">
                         Subscribe
@@ -49,18 +47,7 @@
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
 </template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style>

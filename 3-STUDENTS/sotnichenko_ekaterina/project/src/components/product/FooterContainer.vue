@@ -2,7 +2,6 @@
     <div>
         <footer class="container">
             <div class="row col-12 px-0 my-5 no-gutters">
-
                 <div class="col-12 px-0
                             col-lg-6">
                     <div class="logo d-flex justify-content-center pb-3 justify-content-lg-start">
@@ -22,8 +21,6 @@
                             Distinctively seize superior initiatives for wireless technologies. Dynamically optimize.
                         </div>
                     </div>
-
-
                 </div>
                 <div class="bottomNav d-none justify-content-between flex-wrap
                             col-lg-6 pl-lg-4 pt-3
@@ -54,7 +51,6 @@
                         <a href="#">Browse All</a>
                     </div>
                 </div>
-
                 <div class="bottomNavXS col-12 d-flex flex-column d-sm-none">
                     <h2 class="d-flex justify-content-around">COMPANY</h2>
                     <div class="footerColumn d-flex justify-content-around px-5">
@@ -72,7 +68,6 @@
                         <a href="#">How to Sell</a>
                         <a href="#">Promotion</a>
                     </div>
-
                     <h2 class="d-flex justify-content-around pt-5">SHOP CATEGORY</h2>
                     <div class="footerColumn d-flex justify-content-around px-5 pt-sm-0">
                         <a href="#">Men</a>
@@ -86,13 +81,3 @@
         </footer>
     </div>
 </template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style>

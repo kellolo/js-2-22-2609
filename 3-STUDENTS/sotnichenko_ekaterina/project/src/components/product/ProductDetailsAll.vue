@@ -10,7 +10,6 @@
                 <div>Action</div>
             </div>
         </div>
-
         <div class="productDetailsProduct">
             <div class="productDetailsDescription">
                 <img src="../../../src/assets/imgs/ProductDetails1.jpg" alt="Product1">
@@ -34,7 +33,6 @@
                 <div class="productDetailsAction"><i class="fas fa-times-circle"></i></div>
             </div>
         </div>
-
         <div class="productDetailsProduct">
             <div class="productDetailsDescription">
                 <img src="../../../src/assets/imgs/ProductDetails2.jpg" alt="Product2">
@@ -58,7 +56,6 @@
                 <div class="productDetailsAction"><i class="fas fa-times-circle"></i></div>
             </div>
         </div>
-
         <div class="productDetailsProduct">
             <div class="productDetailsDescription">
                 <img src="../../../src/assets/imgs/ProductDetails3.jpg" alt="Product3">
@@ -88,13 +85,3 @@
         </div>
     </div>
 </template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style>

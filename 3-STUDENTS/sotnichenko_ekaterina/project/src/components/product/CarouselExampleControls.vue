@@ -21,10 +21,8 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-
         <div class="womanCollectionContainer container border px-0">
             <div class="womanCollection">
-
                 <div class="womanCollectionTop d-flex flex-column align-items-center border-bottom">
                     <div class="womenCollectionTitle">WOMEN COLLECTION
                         <div class="womenCollectionTitleBorder">
@@ -39,15 +37,12 @@
                         Progressively syndicate collaborative architectures before cutting-edge services.
                         Completely visualize parallel core competencies rather than exceptional portals.
                     </div>
-
                     <div class="womenCollectionFeatures">
                         <div>MATERIAL: <span>COTTON</span></div>
                         <div>DESIGNER: <span>BINBURHAN</span></div>
                     </div>
-
                     <div class="womenCollectionPrice">$561</div>
                 </div>
-
                 <div class="womanCollectionBottom">
                     <form class="womanCollectionBottomChoose">
                         <div class="womenCollectionChoose">
@@ -73,7 +68,6 @@
                             <input type="text">
                         </div>
                     </form>
-
                     <button type="button" class="btn btn-outline-secondary feturedButton">
                         <i class="fas fa-shopping-cart"></i> Add to Cart
                     </button>
@@ -87,13 +81,3 @@
         </div>
     </div>
 </template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style>

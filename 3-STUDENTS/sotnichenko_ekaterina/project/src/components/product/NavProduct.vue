@@ -1,8 +1,10 @@
 <template>
-  <div>
-      <nav class="nav container d-none d-md-flex justify-content-center mt-3">
+    <div>
+        <nav class="nav container d-none d-md-flex justify-content-center mt-3">
             <div class="navAll">
-                <a class="nav-link" href="index.html">Home</a>
+                <router-link :to="{Index}" >
+                    <span class="nav-link">Home</span>
+                </router-link>
                 <div class="dropNav">
                     <div class="dropNavIn">
                         <div class="dropNavItem">woman</div>
@@ -41,7 +43,6 @@
                     </div>
                 </div>
             </div>
-
             <a class="nav-link" href="#">Man</a>
             <a class="nav-link" href="#">Women</a>
             <a class="nav-link" href="#">Kids</a>
@@ -49,15 +50,5 @@
             <a class="nav-link" href="#">Featured</a>
             <a class="nav-link" href="#">Hot Deals</a>
         </nav>
-  </div>
+    </div>
 </template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style>

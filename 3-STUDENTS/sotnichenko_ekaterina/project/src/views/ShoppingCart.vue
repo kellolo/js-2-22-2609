@@ -7,11 +7,11 @@
         <main>
             <ProductDetailsAll />
             <ShippingContainer />
-</main>
-<SubscribeBg />
-<FooterContainer />
-<BgCopyrights />
-  </div>
+        </main>
+        <SubscribeBg />
+        <FooterContainer />
+        <BgCopyrights />
+    </div>
 </template>
 
 <script>

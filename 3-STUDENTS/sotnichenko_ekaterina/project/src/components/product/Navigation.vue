@@ -1,12 +1,10 @@
 <template>
   <div class="container my-5 pb-0 pb-lg-5 px-0">
         <div class="row">
-
             <div class="col-10 offset-1
                         col-sm-12 offset-sm-0
                         col-md-12 d-sm-flex justify-sm-content-between
                         col-lg-3 pr-lg-4 d-lg-block ">
-
                 <details class="pl-0 pr-0
                                 col-sm-4 pr-sm-4
                                 col-lg-12 pr-lg-3 ">
@@ -31,7 +29,6 @@
                         <a href="#">Tanks</a>
                     </div>
                 </details>
-
                 <details class="pl-0 pr-0 mt-4
                                 col-sm-4 pr-sm-4 mt-sm-0
                                 col-lg-12 pt-lg-4 pl-lg-0 pr-lg-3 ">
@@ -56,7 +53,6 @@
                         <a href="#">Tanks</a>
                     </div>
                 </details>
-
                 <details class="pl-0 pr-0 mt-4
                                 col-sm-4 mt-sm-0
                                 col-lg-12 pt-lg-4 pl-lg-0 pr-lg-3">
@@ -82,7 +78,6 @@
                     </div>
                 </details>
             </div>
-
             <div class="col-10 offset-1 col-sm-12 offset-sm-0
                         col-md-12 offset-md-0
                         col-lg-9">
@@ -93,7 +88,6 @@
                                 col-md-3 pr-md-0
                                 mt-lg-0">
                         <div class="productFeaturesTitle">Trending now</div>
-
                         <div class="productFeatures row col-12 no-gutters pt-2">
                             <a href="#" class="col-5 border-right">Bohemian</a>
                             <a href="#" class="col-4 border-right pl-3">Floral</a>
@@ -103,14 +97,12 @@
                             <a href="#" class="col-5 pl-3">Bohemian</a>
                         </div>
                     </div>
-
                     <div class="no-gutters
                                 col-8 mt-5
                                 col-sm-6
                                 col-md-4 pl-md-3
                                 pl-lg-0 mt-lg-0">
                         <div class="productFeaturesTitle">Size</div>
-
                         <form class="productSizes row col-12 no-gutters pt-2">
                             <div class="col-3 productFeatures">
                                 <input type="checkbox" id="xxs" name="xxs">
@@ -142,7 +134,6 @@
                             </div>
                         </form>
                     </div>
-
                     <div class="col-10 mt-5 offset-0
                                 col-sm-10
                                 col-md-4
@@ -161,7 +152,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="mt-4 sortBy d-flex justify-content-around justify-content-md-start">
                     <form class="py-3">
                         <label class="px-2 ml-3 mb-0" for="sortBy">Sort By</label>
@@ -180,11 +170,7 @@
                         </select>
                     </form>
                 </div>
-
-                <!-------------------------------FETURED ST----------------------------->
-
                 <div class="row row-cols-3" id="catalog"></div>
-
                 <div class="d-flex flex-column align-items-center justify-content-around mt-5 flex-sm-row justify-content-sm-between">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
@@ -215,13 +201,3 @@
         </div>
     </div>
 </template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style>

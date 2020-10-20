@@ -34,7 +34,6 @@
                         <a href="#" class="dropdown-item" type="button">Leggings/Pants</a>
                         <a href="#" class="dropdown-item" type="button">Skirts/Shorts</a>
                         <a href="#" class="dropdown-item" type="button">Accessories</a>
-
                         <div class="dropdown-item">men</div>
                         <a href="#" class="dropdown-item" type="button">Tees/Tank tops</a>
                         <a href="#" class="dropdown-item" type="button">Shirts/Polos</a>
@@ -57,8 +56,6 @@
                                         col-lg-3 offset-lg-2 pt-lg-0
                                         col-md-3 offset-md-2 mt-md-0 mr-md-0 d-md-flex
                                         col-sm-4 offset-sm-4 pt-sm-3 justify-content-sm-end ">
-
-
                 <div class="headerCart pr-4" >
                 <label for="cart_checkbox" class="label_cart_checkbox"></label>
                     <router-link :to="{name: 'Index'}">
@@ -73,8 +70,6 @@
                     </div>
 
                 </div>
-
-
                 <div class="dropdown">
                     <button class="btn-lg btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         My Account
@@ -86,11 +81,8 @@
                     </div>
                 </div>
             </div>
-
             </div>
-
             <div class="row mx-0 d-md-none pt-3 justify-content-between">
-
                 <div class="burgermenu justify-content-between align-items-center
                                         col-2 pt-1
                                         col-sm-6">
@@ -107,7 +99,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="headerAccountAndCart d-flex align-items-center justify-content-end
                                         col-2 pt-1
                                         col-sm-6">
@@ -127,7 +118,6 @@
                                     </a>
                                     <a href="#"><i class="fas fa-times-circle"></i></a>
                                 </div>
-
                                 <div class="d-flex">
                                     <a href="#" class="d-flex headerCartWrapIn">
                                         <img src="../../../src/assets/imgs/myAccount2.jpg" alt="">
@@ -139,19 +129,15 @@
                                     </a>
                                     <a href="#"><i class="fas fa-times-circle"></i></a>
                                 </div>
-
                                 <div class="headerCartWrapTotalPrice">
                                     <div>total</div>
                                     <div>$500.00</div>
                                 </div>
-
                                 <button type="button" class="productsButtonIndex">Checkout</button>
                                 <button type="button" class="productsButtonIndex">Go to cart</button>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="dropdown">
                         <button class="btn-lg btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             My Account
@@ -163,18 +149,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </header>
     </div>
 </template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style>
