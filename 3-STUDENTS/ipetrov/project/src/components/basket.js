@@ -1,16 +1,17 @@
-import List from './LIST.js'
+import ancientParent from "./ancient";
 
-export default class Basket extends List {
+export default class Basket extends ancientParent {
     constructor(url = '/basket.json', container = '#basket') {
-        super('#basket-items', url);
+        super(url, container);
+        
         this.shown = false;
-        this.wrapper = document.querySelector(container);
+        this.itemsContainer = document.querySelector('#basket-items');
     }
 
     _handleActions() {
         document.querySelector('#basket-toggler').addEventListener('click', () => {
             this.shown = !this.shown;
-            this.wrapper.classList.toggle('invisible');
+            this.container.classList.toggle('invisible');
         });
 
         this.container.addEventListener('click', ev => {
@@ -20,7 +21,6 @@ export default class Basket extends List {
             }
         })
     }
-
     add(product) {
         let find = this.items.find(el => el.productId == product.productId);
             if (!find) {
@@ -30,7 +30,6 @@ export default class Basket extends List {
             }
         this._render();
     }
-
     _remove(id) {
         let find = this.items.find(el => el.productId == id);
         if (find.amount > 1) {
@@ -40,4 +39,4 @@ export default class Basket extends List {
         }
         this._render();
     }
-}
+};
