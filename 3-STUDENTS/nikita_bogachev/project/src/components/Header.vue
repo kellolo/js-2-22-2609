@@ -1,13 +1,13 @@
 <template>
           <header class="header center">
         <div class="header__left">
-          <a href="" class="logo">
+          <router-link to="/" class="logo">
             <img
               class="logo__img"
               src="../../src/assets/imgs/logo.png"
               alt="logo"/>
             <span class="logo__text">BRAN<span class="logo__text--last_letter">D</span></span>
-          </a>
+          </router-link>
           <div class="header__form">
             <button class="header__browse" @click="showMenu = !showMenu">Browse</button>
             <input

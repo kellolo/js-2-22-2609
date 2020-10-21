@@ -25,9 +25,9 @@
         <Catalog />
         <!-- ./CATALOG__MAIN -->
         <div class="catalog__button">
-          <a class="catalog__link" href="product.html"
+          <router-link class="catalog__link" to="/product"
             >Browse All Product<i class="fas fa-long-arrow-alt-right"></i
-          ></a>
+          ></router-link>
         </div>
       </section>
       <!-- OFFER -->
@@ -86,5 +86,6 @@ export default {
     Contacts,
     Footer
   },
+
 };
 </script>

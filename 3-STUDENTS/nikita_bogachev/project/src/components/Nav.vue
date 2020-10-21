@@ -2,7 +2,7 @@
         <nav class="nav center">
         <ul class="menu">
           <li class="menu__list">
-            <a href="index.html" class="menu__link active">Home</a>
+            <router-link to="/" class="menu__link active">Home</router-link>
           </li>
           <li class="menu__list">
             <a href="product.html" class="menu__link">Man</a>
