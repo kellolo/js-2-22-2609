@@ -4,7 +4,7 @@
             <!-- HEADER -->
             <header class="header center">
                 <HeaderLeft />
-                <Basket ref="basket" />
+                <Basket ref="basket" @change='_changeTab'/>
             </header>
             <!-- NAV -->
             <Nav />
@@ -92,13 +92,19 @@ export default {
   },
   data() {
         return {
-            selected: 'main'
+            selected: ''
         }
   },
   methods: {
       _add(pl) {
           this.$refs.basket.add(pl)
+      },
+      _changeTab(name) {
+          this.selected = name;
       }
+  },
+  mounted() {
+      this.selected = 'main'
   }
 }
 </script>
