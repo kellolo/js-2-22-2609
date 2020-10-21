@@ -11,7 +11,8 @@ export default {
     data() {
         return {
             items: [],
-            url: 'https://raw.githubusercontent.com/kpe4et/static/master/JSON/catalog.json'
+            url: '/api/catalog' // for dev
+            // url: '/catalog'     // for build
         }
     },
     mounted() {

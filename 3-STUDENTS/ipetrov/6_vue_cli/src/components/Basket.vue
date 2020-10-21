@@ -6,15 +6,14 @@
             <!-- DROP CART --> 
             <div id="basket" class="drop" v-show="show">
                 <div id="basket-items">
-                    <Item v-for="item of items" v-bind:key="item.productId" :item="item" type="basket"/>
-                    
+                    <Item v-for="item of items" v-bind:key="item.productId" :item="item" type="basket"/> 
                 </div>
                 <div class="drop__total">
                     <div>TOTAL</div>
                     <div id="total-sum"></div>
                 </div>
                 <a href="checkout.html" class="drop__link">Checkout</a>
-                <a href="#" class="drop__link">Go to cart</a>
+                <a @click="selected = 'cart'" class="drop__link">Go to cart</a>
             </div>
         </div>
         <a class="header__link" href="#">My Account</a>
@@ -24,12 +23,14 @@
 <script>
 import Item from "./Item.vue"
 export default {
+    props: ['selected'],
     components: { Item },
     data() {
         return {
             items: [],
             show: false,
-            url: 'https://raw.githubusercontent.com/kpe4et/static/master/JSON/basket.json'
+            url: '/api/basket' // for dev
+            // url: '/basket'     // for build
         }
     },
     methods: {
