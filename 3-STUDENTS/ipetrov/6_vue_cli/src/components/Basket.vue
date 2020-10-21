@@ -64,5 +64,7 @@ export default {
 </script>
 
 <style>
-
+    a {
+        cursor: pointer;
+    }
 </style>
