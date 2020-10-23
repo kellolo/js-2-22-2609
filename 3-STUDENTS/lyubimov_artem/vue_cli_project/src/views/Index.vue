@@ -5,7 +5,7 @@
           <header class="header center">
                 <HeaderLeft />
               <div class="header__right">
-                <Basket />
+                <Basket ref="basket"/>
                 <a class="header__link" href="#">My Account</a>
               </div>
           </header>
@@ -19,7 +19,7 @@
           <section class="catalog center">
               <h3 class="catalog__header">Featured Items</h3>
               <p class="catalog__header_text">Shop for items based on what we featured in this week</p>
-              <Catalog />
+              <Catalog @add="_add"/>
               <!-- ./CATALOG__MAIN -->
               <div class="catalog__button">
                   <a class="catalog__link" href="product.html">Browse All Product<i class="fas fa-long-arrow-alt-right"></i></a>
@@ -66,6 +66,11 @@ export default {
     Nav,
     HeaderLeft,
     Promo,
+  },
+  methods: {
+    _add (pl) {
+      this.$refs.basket.add(pl)
+    }
   }
 }
 </script>

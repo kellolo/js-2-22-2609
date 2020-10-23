@@ -7,23 +7,7 @@
         <!-- DROP CART -->
         <div class="drop" id="basket" v-show="shown">
             <div id="basket-items">
-                <div class="drop__box" v-for="item of items" :key="item.productId">
-                    <a class="drop__img" href="single.html">
-                        <img :src="item.productImg" alt="#" width="72" height="85">
-                    </a>
-                    <div class="drop__info">
-                        <a href="single.html" class="drop__title">{{ item.productName}}</a>
-                        <img src="../../src/assets/imgs/drop_cart/stars.png" alt="#">
-                        <div class="drop__price">
-                            <span class="drop__count">{{ item.amount }}</span>
-                            <span class="drop__span">x</span>
-                            ${{ item.productPrice }}
-                        </div>
-                    </div>
-                    <button @click="remove(item.productId)"
-                    class="drop__cancel fas fa-times-circle"
-                    name="remove">x</button>
-                </div>
+                <Item v-for="item of items" :key="item.productId" :item="item" type="basket"/>
             </div>
             <div class="drop__total">
                 <div>TOTAL</div>
@@ -36,7 +20,9 @@
 </template>
 
 <script>
+import Item from './Item.vue'
 export default {
+    components: { Item },
     data() {
         return {
             items: [],
@@ -57,12 +43,12 @@ export default {
         add(item) {
             let find = this.items.find(el => el.productId == item.productId);
             if (!find) {
-                this.items.push(Object.assign(item, { amount: 1 }));
+                this.items.push(Object.assign({}, item, { amount: 1 }));
             } else {
                 find.amount++;
             }
         },
-        remove(item) {
+        remove(id) {
             let find = this.items.find(el => el.productId == id);
             if (find.amount > 1) {
                 find.amount--;
