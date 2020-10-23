@@ -27,7 +27,8 @@ export default {
         return {
             items: [],
             shown: false,
-            url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/basket.json'
+            url: '/api/basket' // for Dev
+            // url: '/basket' // for Build // когда перенесем на сервер
         }
     },
     mounted() {

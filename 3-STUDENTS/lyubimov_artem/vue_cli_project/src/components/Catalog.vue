@@ -11,7 +11,8 @@ export default {
     data() {
         return {
             items: [],
-            url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/catalog.json'
+            url: '/api/catalog' //for Dev
+            // url: '/api/catalog' // for Build // когда перенесем на сервер
         }
     },
     mounted() {
