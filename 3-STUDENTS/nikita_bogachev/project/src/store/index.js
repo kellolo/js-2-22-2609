@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import axios from 'axios'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -18,42 +18,88 @@ export default new Vuex.Store({
     SET_ADD_CART: (state, item) =>{
       let find = state.items.find(el => el.productId == item.productId);
         if (!find) {
-            state.items.push(Object.assign({},item, { amount: 1 }));
+          let newItem = Object.assign({},item, { amount: 1 })
+            axios.post(`/api/basket/`, newItem)
+          .then(status => {
+            if(status){
+              state.items.push(newItem);
+            }
+          })
+          .catch(e => {console.log(e)})
+        
         } else {
-            find.amount++;
+          axios.put(`/api/basket/${find.productId}`, { amount: 1 })
+          .then(status => {
+            if(status){
+              find.amount++;
+            }
+          })
+          .catch(e => {console.log(e)})
         }
     },
     REMOVE_ITEM: (state, item) => {
       let find = state.items.find(el => el.productId == item.productId);
             if (find.amount > 1) {
-                find.amount--;
+              axios.put(`/api/basket/${find.productId}`, { amount: -1 })
+              .then(status => {
+                if(status){
+                  find.amount--;
+                }
+              })
+              .catch(e => {console.log(e)})
             } else {
-                state.items.splice(state.items.indexOf(find), 1);
+              axios.delete(`/api/basket/${find.productId}`)
+              .then(status => {
+                if(status){
+                  state.items.splice(state.items.indexOf(find), 1);
+                }
+              })
+              .catch(e => {console.log(e)})
             }
     },
-    CLEAR_BASKET_ITEM: (state) => {
-      state.items = []
+    CLEAR_BASKET_ITEM: (state, data) => {
+      axios.patch(`/api/basket`).then(status => {
+        if (status){
+          state.items  = []
+        }
+      })
+      .catch(e => console.log(e))
     },
     CHANGE_COUNT: (state, item) => {
       let find = state.items.find(el => el.productId == item.productId);
-      let value = event.target.value;
-      find.amount = value;
+      if (find.amount == 0){
+        axios.delete(`/api/basket/${find.productId}`)
+        .then(status => {
+          if(status){
+            state.items.splice(state.items.indexOf(find), 1);
+          }
+        })
+        .catch(e => {console.log(e)})
+      
+      } else {
+      axios.put(`/api/basket/${find.productId}`, item.amount)
+              .then(status => {
+                if(status){
+                  find.amount = item.amount;
+                }
+              })
+              .catch(e => {console.log(e)})
     }
-    
+  }
   },
   actions: {
     GET_CATALOG_ITEM({commit}){
-      return fetch('/catalog')
+      return axios.get('/api/catalog')
+      .then((items) => commit('SET_CATALOG', items.data))  
+      .catch((error)=> {console.log(error)});
       //from build /catalog
-      //from dev api/catalog
-      .then(data => data.json()).then((items) => commit('SET_CATALOG', items)) 
-      .catch((error)=> {console.log(error)})
+      //from dev /api/catalog
     },
     GET_BASKET_ITEM({commit}){
-      return fetch('/basket')  
-      //from dev api/basket
+      return axios.get('/api/basket')
+      //from dev basket
       //from build /basket
-      .then(data => data.json()).then((items) => commit('SET_ITEMS', items))
+      .then((items) => commit('SET_ITEMS', items.data))
       .catch((error)=> {console.log(error)})
     },
     ADD({commit}, item){
