@@ -172,6 +172,7 @@
                 </div>
                 <div class="row row-cols-3" id="catalog"></div>
                 <div class="d-flex flex-column align-items-center justify-content-around mt-5 flex-sm-row justify-content-sm-between">
+                    <Catalog @add="_add"/>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item">

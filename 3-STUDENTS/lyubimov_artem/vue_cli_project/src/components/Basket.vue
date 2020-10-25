@@ -13,7 +13,9 @@
                 <div>TOTAL</div>
                 <div id="total-sum"></div>
             </div>
-            <a href="checkout.html" class="drop__link">Checkout</a>
+            <router-link :to="{name: 'Checkout'}">
+                <a href="checkout.html" class="drop__link">Checkout</a>
+            </router-link>
             <a href="#" class="drop__link">Go to cart</a>
         </div>
         </div>
