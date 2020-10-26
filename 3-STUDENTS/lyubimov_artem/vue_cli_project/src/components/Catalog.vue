@@ -6,6 +6,7 @@
 
 <script>
 import Item from './Item.vue'
+import $axXios from '../utils/axios'
 export default {
     components: { Item },
     data() {
@@ -16,14 +17,10 @@ export default {
         }
     },
     mounted() {
-        this.get(this.url).then(items => this.items = items)
+        $axXios.get(this.url)
+        .then(items =>
+            {this.items = items})
     },
-    methods: {
-        get(url) {
-            return fetch(url)
-                .then(data => data.json())
-        }
-    }
 }
 </script>
 
