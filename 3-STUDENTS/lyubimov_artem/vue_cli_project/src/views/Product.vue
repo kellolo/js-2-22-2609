@@ -44,7 +44,12 @@ export default {
         ProductsFeaturesBg,
         SubscribeBg,
         Catalog,
+    },
+    methods: {
+        _add (pl) {
+            this.$refs.basket.add(pl)
     }
+  }
 }
 </script>
 

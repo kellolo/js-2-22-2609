@@ -12,7 +12,7 @@ export default {
         return {
             items: [],
             url: '/api/catalog' //for Dev
-            // url: '/api/catalog' // for Build // когда перенесем на сервер
+            // url: '/catalog' // for Build // когда перенесем на сервер
         }
     },
     mounted() {

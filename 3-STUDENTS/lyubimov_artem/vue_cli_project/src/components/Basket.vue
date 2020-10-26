@@ -16,7 +16,9 @@
             <router-link :to="{name: 'Checkout'}">
                 <a href="checkout.html" class="drop__link">Checkout</a>
             </router-link>
+            <router-link :to="{name: 'ShoppingCart'}">
             <a href="#" class="drop__link">Go to cart</a>
+            </router-link>
         </div>
         </div>
 </template>

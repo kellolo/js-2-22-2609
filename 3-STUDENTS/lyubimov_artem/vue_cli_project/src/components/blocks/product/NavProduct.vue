@@ -2,7 +2,7 @@
     <div>
         <nav class="nav container d-none d-md-flex justify-content-center mt-3">
             <div class="navAll">
-                <router-link :to="{Index}" >
+                <router-link :to="{name: 'Index'}" >
                     <span class="nav-link">Home</span>
                 </router-link>
                 <div class="dropNav">
