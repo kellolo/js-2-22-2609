@@ -9,35 +9,28 @@
             <!-- NAV -->
             <Nav />
             <!-- PROMO -->
-            <section class="promo center">
-                <div class="promo__content">
-                    <h1 class="promo__suptitle">THE BRAND</h1>
-                    <h2 class="promo__title">OF LUXERIOUS <span class="promo__title--last_letter">FASHION</span></h2>
-                </div>
-            </section>
+            
 
 
-            <template v-if="selected=='main'">
-                <!-- PRODUCTS -->
+            <!-- <template v-if="selected=='main'">
                 <Products />
-                <!-- CATALOG -->
                 <section class="catalog center">
                     <h3 class="catalog__header">Featured Items</h3>
                     <p class="catalog__header_text">Shop for items based on what we featured in this week</p>
 
                     <Catalog @add='_add'/>
 
-                    <!-- ./CATALOG__MAIN -->
                     <div class="catalog__button">
                         <a class="catalog__link" href="product.html">Browse All Product<i class="fas fa-long-arrow-alt-right"></i></a>
                     </div>
                 </section>
-                <!-- OFFER -->
                 <Offer />
-            </template>
+            </template> -->
+
             
-            <!-- CART -->
-            <template v-if="selected == 'cart'"><Cart /></template>
+
+            <router-view />
+            <!-- <template v-if="selected == 'cart'"><Cart /></template> -->
             
 
 
@@ -66,6 +59,7 @@
 
 <script>
 
+import HomePage from '../components/HomePage.vue'
 import Catalog from '../components/Catalog.vue'
 import HeaderLeft from '../components/UIcomp/HeaderLeft.vue'
 import Nav from '../components/UIcomp/Nav.vue'
@@ -88,7 +82,8 @@ export default {
     Subscribe,
     Footer,
     Basket,
-    Cart
+    Cart,
+    HomePage
   },
   data() {
         return {
@@ -99,12 +94,21 @@ export default {
       _add(pl) {
           this.$refs.basket.add(pl)
       },
-      _changeTab(name) {
-          this.selected = name;
-      }
+      goBack() {
+        window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+     }
+    //   _changeTab(name) {                 кривота
+    //       this.selected = name;
+    //   }
   },
-  mounted() {
-      this.selected = 'main'
-  }
+    computed: {
+    username() {
+      // Мы скоро разберём что такое `params`
+      return this.$route.params.username
+    }
+  },
+//   mounted() {                            кривота
+//       this.selected = 'main'
+//   }                  
 }
 </script>

@@ -12,8 +12,8 @@
                     <div>TOTAL</div>
                     <div id="total-sum"></div>
                 </div>
-                <a href="checkout.html" class="drop__link">Checkout</a>
-                <a @click="$emit('change', 'cart')" class="drop__link">Go to cart</a>
+                <router-link to="Checkout" class="drop__link">Go to cart</router-link>
+                <router-link to="Cart" class="drop__link">Go to cart</router-link>
             </div>
         </div>
         <a class="header__link" href="#">My Account</a>
