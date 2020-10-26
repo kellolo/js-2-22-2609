@@ -12,13 +12,23 @@
 //     });
 // }, 300);
 
-let basket = {
-    items: [],
-    shown: false,
-    container: null,
-    itemsContainer: null,
-    url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/basket.json',
-    init() {
+//let basket = {
+
+export default class Basket {
+    // items: [],
+    // shown: false,
+    // container: null,
+    // itemsContainer: null,
+    // url: 'https://raw.githubusercontent.com/kellolo/static/master/JSON/basket.json',
+    constructor() {
+        this.items = [];
+        this.shown = false;
+        this.container = null;
+        this.itemsContainer = null;
+        this.url = 'https://raw.githubusercontent.com/kellolo/static/master/JSON/basket.json';
+        this._init();
+    }
+    _init() {
         this.container = document.querySelector('#basket');
         this.itemsContainer = document.querySelector('#basket-items');
         this.getData(this.url)
@@ -27,11 +37,11 @@ let basket = {
                 this._render();
                 this._handleActions();
             })
-    },
+    }
     getData(url) {
         return fetch(url) //JSON
             .then(data => data.json()) // JSON >>> Obj/Array
-    },
+    }
     _render() {
         let str = '';
         this.items.forEach(item => {
@@ -49,7 +59,7 @@ let basket = {
                     </div>`;
         });
         this.itemsContainer.innerHTML = str;
-    },
+    }
     _handleActions() {
         document.querySelector('#basket-toggler').addEventListener('click', () => {
             this.shown = !this.shown;
@@ -62,7 +72,7 @@ let basket = {
                 this._remove(ev.target.dataset.id);
             }
         })
-    },
+    }
     add(product) {
         let find = this.items.find(el => el.productId == product.productId);
         if (!find) {
@@ -71,7 +81,7 @@ let basket = {
             find.amount++;
         }
         this._render();
-    },
+    }
     _remove(id) {
         let find = this.items.find(el => el.productId == id);
         if (find.amount > 1) {
@@ -81,108 +91,4 @@ let basket = {
         }
         this._render();
     }
-    // items: {},
-    // addProduct(product) {
-    //     this.addProductToObject(product);
-    //     this.renderProductInBasket(product);
-    //     this.showCartCount();
-    //     this.renderTotalSum();
-    //     this.removeBtnsListeners();
-    // },
-    // addProductToObject(product) {
-    //     if(this.items[product.id] == undefined) {
-    //         this.items[product.id] = {
-    //             id: product.id,
-    //             price: product.price,
-    //             name: product.name,
-    //             image: product.image,
-    //             count: 1
-    //         }
-    //     } else {
-    //         this.items[product.id].count++;
-    //     }
-    // },
-    // renderProductInBasket(product) {
-    //     let productExist = document.querySelector(`.drop__count[data-id="${product.id}"]`);
-    //     if(productExist) {
-    //         productExist.textContent++;
-    //         return;
-    //     }
-    //     let productRow = 
-    // `<div class="drop__box" data-id="${product.id}">
-    //     <a class="drop__img" href="single.html"><img src="${product.image}" alt="#" width="72" height="85"></a>
-    //     <div class="drop__info">
-    //         <a href="single.html" class="drop__title">${product.name}</a>
-    //         <img src="../src/assets/imgs/drop_cart/stars.png" alt="#">
-    //         <div class="drop__price"><span class="drop__count" data-id="${product.id}">1</span><span class="drop__span">x</span>$${product.price}</div>
-    //     </div>
-    //     <button class="drop__cancel" data-id="${product.id}"><i class="fas fa-times-circle"></i><button>
-    // </div>`;
-    //     let dropCart = document.querySelector('#drop');
-    //     dropCart.insertAdjacentHTML("afterbegin", productRow);
-    // },
-    // showCartCount() {
-    //     let cart = document.querySelector('#basket-count');
-    //     cart.style.visibility="visible";
-    //     cart.textContent = this.getCountsFromBasket();
-    //     if(this.getCountsFromBasket() == 0) {
-    //         cart.style.visibility="hidden";
-    //     }
-    // },
-    // getCountsFromBasket() {
-    //     let goodsCount = 0;
-    //     for (let key in this.items) {
-    //         goodsCount += this.items[key].count;
-    //     }
-    //     return goodsCount;
-    // },
-    // renderTotalSum() {
-    //     document.querySelector('#total-sum').textContent = `${this._getTotalSum()}$`;
-    // },
-    // _getTotalSum() {
-    //     let sum = 0;
-    //     for (let key in this.items) {
-    //         sum += this.items[key].price * this.items[key].count;
-    //     }
-    //     return sum;
-    // },
-    // removeBtnsListeners() {
-    //     let btns = document.querySelectorAll('.drop__cancel');
-    //     for (let i = 0; i < btns.length; i++) {
-    //         btns[i].addEventListener('click', this._removeProductListener);
-    //     }
-    // },
-    // _removeProductListener(event) {
-    //     basket._removeProduct(event);
-    //     basket.renderTotalSum();
-    //     basket.showCartCount();
-    // },
-    // _removeProduct(event) {
-    //     let id = event.currentTarget.dataset.id;
-    //     this._removeProductFromObject(id);
-    //     this._removeProductFromBasket(id);
-    // },
-    // _removeProductFromBasket(id) {
-    //     let countRm = document.querySelector(`.drop__count[data-id="${id}"]`);
-    //     let productBox = document.querySelector(`.drop__box[data-id="${id}"]`);
-    //     if (countRm.textContent == 1) {
-    //         while (productBox.firstChild) {
-    //             productBox.removeChild(productBox.firstChild);
-    //           }
-    //         productBox.remove();  
-    //     } else {
-    //         countRm.textContent--;
-    //     }
-    // },
-    // _removeProductFromObject(id) {
-    //     if (this.items[id].count == 1) {
-    //         delete this.items[id];
-    //     } else {
-    //         this.items[id].count--;
-    //     }
-    // },
 };
-
-basket.init();
-
-export default basket;
