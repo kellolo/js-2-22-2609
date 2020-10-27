@@ -6,6 +6,7 @@
 
 <script>
 import Item from './Item.vue'
+import Basket from './Basket.vue'
 import $axXios from '../utils/axios'
 export default {
     components: { Item },
