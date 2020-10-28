@@ -1,18 +1,18 @@
 <template>
     <div class="catalog__main" id="catalog">
-        <Item v-for="item of items" :key="item.productId" :itemProp="item" @add='add'/>
+        <Item v-for="item of items" :key="item.productId" :item="item" />
     </div>
 </template>
 
 <script>
 import Item from './Item.vue'
-import Basket from './Basket.vue'
 export default {
     components: { Item },
     data() {
         return {
             items: [],
-            url: 'https://raw.githubusercontent.com/kpe4et/static/master/JSON/catalog.json'
+            url: '/api/catalog' // for dev
+            // url: '/catalog'     // for build
         }
     },
     mounted() {
@@ -25,11 +25,7 @@ export default {
             return fetch(url)
                 .then(data => data.json())
         },
-        // проброшу клик еще выше
-        add(itemProp) {
-            this.$emit('add', itemProp)
-        }
-        
+
     },
 }
 </script>
