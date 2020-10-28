@@ -1,20 +1,41 @@
 {
-    "totalAmount": 3,
-    "totalPrice": 203,
-    "content": [
-        {
-            "productName":"ORANGE PEOPLE T-SHIRT",
-            "productPrice":67,
-            "productImg":"https://raw.githubusercontent.com/kellolo/static/master/img/JS1_shop/featuredItem4.jpg",
-            "productId":"prod_3",
-            "amount": 2
-        },
-        {
-            "productName":"PUMKIN PEOPLE T-SHIRT",
-            "productPrice":69,
-            "productImg":"https://raw.githubusercontent.com/kellolo/static/master/img/JS1_shop/featuredItem5.jpg",
-            "productId":"prod_4",
-            "amount": 1
-        }
-    ]
+ "totalAmount": 3,
+ "totalPrice": 203,
+ "content": [
+  {
+   "productName": "ORANGE PEOPLE T-SHIRT",
+   "productPrice": 67,
+   "productImg": "https://raw.githubusercontent.com/kellolo/static/master/img/JS1_shop/featuredItem4.jpg",
+   "productId": "prod_3",
+   "amount": 3
+  },
+  {
+   "productName": "PUMKIN PEOPLE T-SHIRT",
+   "productPrice": 69,
+   "productImg": "https://raw.githubusercontent.com/kellolo/static/master/img/JS1_shop/featuredItem5.jpg",
+   "productId": "prod_4",
+   "amount": 1
+  },
+  {
+   "productName": "MANGO PEOPLE T-SHIRT",
+   "productPrice": 52,
+   "productImg": "https://raw.githubusercontent.com/kellolo/static/master/img/JS1_shop/featuredItem1.jpg",
+   "productId": "prod_0",
+   "amount": 1
+  },
+  {
+   "productName": "CUCUMBER PEOPLE T-SHIRT",
+   "productPrice": 23,
+   "productImg": "https://raw.githubusercontent.com/kellolo/static/master/img/JS1_shop/featuredItem7.jpg",
+   "productId": "prod_6",
+   "amount": 3
+  },
+  {
+   "productName": "TOMATO PEOPLE T-SHIRT",
+   "productPrice": 45,
+   "productImg": "https://raw.githubusercontent.com/kellolo/static/master/img/JS1_shop/featuredItem8.jpg",
+   "productId": "prod_7",
+   "amount": 1
+  }
+ ]
 }

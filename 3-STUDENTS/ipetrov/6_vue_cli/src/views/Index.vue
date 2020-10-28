@@ -8,7 +8,7 @@
 
             <Nav />
 
-            <router-view />            
+            <router-view @add="_add"/>            
 
             <!-- SUBSCRIBE -->
             <Subscribe />
@@ -58,7 +58,11 @@ export default {
         }
   },
   methods: {
+    _add(pl) {
+          this.$refs.basket.add(pl);
+      },
       goBack() {
+        
         window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
      }
   },

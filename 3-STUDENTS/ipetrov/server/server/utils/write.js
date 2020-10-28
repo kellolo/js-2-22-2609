@@ -1,9 +1,8 @@
 const fs = require('fs');
 
-module.exports = async (fileUrl, data) => {
+module.exports = async (fileURL, data) => {
     try {
-        let data = await fs.readFileSync('', 'UTF-8')
-        await fs.writeFile(fileUrl, JSON.stringify(data, null, ' '), err => { });
+        await fs.writeFile(fileURL, JSON.stringify(data, null, ' '), err => {  });
         return true
     }
 

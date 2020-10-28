@@ -1,5 +1,5 @@
 function _search(arr, id) {
-    arr.find(el => el.productId == id)
+    return arr.find(el => el.productId == id)
 }
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
     },
     change(basket, id, amount) {
         let find = _search(basket.content, id);
-        find(amount) += amount;
+        find.amount += amount;
         return basket
     },
     delete(basket, id) {
