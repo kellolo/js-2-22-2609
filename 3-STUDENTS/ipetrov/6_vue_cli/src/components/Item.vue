@@ -11,7 +11,7 @@
                     </span>${{item.productPrice}}</div>
                 </div>
                 <button class="drop__cancel fas fa-times-circle" name="remove" 
-                @click="$parent.remove(item.productId)">
+                @click="$store.commit('REMOVE_FROM_CART', item.productId)">
                 </button>
             </div>
         </template>
@@ -20,7 +20,7 @@
                 <button 
                     class="catalog__bucket" 
                     name="add" 
-                    @click="$parent.$parent.$emit('add', item)"
+                    @click="$store.commit('ADD_TO_CART', item)"
                 >
                     <img class="catalog__hidden_img" 
                     src="https://raw.githubusercontent.com/Eliseev88/geekbrains/3fdc76c4d5e84b1398b168e6239b8651dce01f6f/products/Forma_1_copy.svg" alt="#">

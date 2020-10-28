@@ -17,7 +17,7 @@
 
             <!-- ./CATALOG__MAIN -->
             <div class="catalog__button">
-                <a class="catalog__link" href="product.html">Browse All Product<i class="fas fa-long-arrow-alt-right"></i></a>
+                <router-link to="ProductCat" class="catalog__link">Browse All Product<i class="fas fa-long-arrow-alt-right"></i></router-link>
             </div>
         </section>
         <!-- OFFER -->

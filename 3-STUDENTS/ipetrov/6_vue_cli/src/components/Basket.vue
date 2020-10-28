@@ -6,13 +6,13 @@
             <!-- DROP CART --> 
             <div id="basket" class="drop" v-show="show">
                 <div id="basket-items">
-                    <Item v-for="item of items" v-bind:key="item.productId" :item="item" type="basket"/> 
+                    <Item v-for="item of FILL_BASKET" v-bind:key="item.productId" :item="item" type="basket"/> 
                 </div>
                 <div class="drop__total">
                     <div>TOTAL</div>
                     <div id="total-sum"></div>
                 </div>
-                <router-link to="Checkout" class="drop__link">Go to cart</router-link>
+                <router-link to="Checkout" class="drop__link">Go to Checkout</router-link>
                 <router-link to="Cart" class="drop__link">Go to cart</router-link>
             </div>
         </div>
@@ -22,49 +22,30 @@
 
 <script>
 import Item from "./Item.vue"
+import { mapActions, mapGetters } from 'vuex'
 export default {
-    props: ['selected'],
     components: { Item },
     data() {
         return {
-            items: [],
-            show: false,
-            url: '/api/basket' // for dev
-            // url: '/basket'     // for build
-        }
-    },
-    methods: {
-        get(url) {
-            return fetch(url)
-                .then(data => data.json())
-        },
-        add(item) {
-            let find = this.items.find(el => el.productId == item.productId);
-            if (!find) {
-                this.items.push(Object.assign({}, item, { amount: 1 }));
-            } else {
-                find.amount++;
-            }
-        },
-        remove(id) {
-            let find = this.items.find(el => el.productId == id);
-            if (find.amount > 1) {
-                find.amount--;
-            } else {
-                this.items.splice(this.items.indexOf(find), 1);
-            }
+            show: false
         }
     },
     mounted() {
-        this.get(this.url)
-            .then(items => 
-                {this.items = items.content;})
+        this.GET_BASKET_ITEMS();
+    },
+    methods: {
+        ...mapActions([
+            'GET_BASKET_ITEMS'
+        ]),
+    },
+    computed: {
+        ...mapGetters([
+            'FILL_BASKET'
+        ])
     },
 }
 </script>
 
 <style>
-    a {
-        cursor: pointer;
-    }
+
 </style>
