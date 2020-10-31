@@ -22,7 +22,9 @@
               <Catalog @add="_add"/>
               <!-- ./CATALOG__MAIN -->
               <div class="catalog__button">
+                <router-link to="/product">
                   <a class="catalog__link" href="product.html">Browse All Product<i class="fas fa-long-arrow-alt-right"></i></a>
+                </router-link>
               </div>
           </section>
           <!-- OFFER -->

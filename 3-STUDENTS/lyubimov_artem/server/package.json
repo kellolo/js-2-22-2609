@@ -6,7 +6,11 @@
   "scripts": {
     "api": "nodemon server"
   },
-  "nodemonConfig":  {"ignore": ["*.json"]},
+  "nodemonConfig": {
+    "ignore": [
+      "*.json"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

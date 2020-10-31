@@ -6,24 +6,22 @@
 
 <script>
 import Item from './Item.vue'
+import Basket from './Basket.vue'
+import $axXios from '../utils/axios'
 export default {
     components: { Item },
     data() {
         return {
             items: [],
             url: '/api/catalog' //for Dev
-            // url: '/api/catalog' // for Build // когда перенесем на сервер
+            // url: '/catalog' // for Build // когда перенесем на сервер
         }
     },
     mounted() {
-        this.get(this.url).then(items => this.items = items)
+        $axXios.get(this.url)
+        .then(items =>
+            {this.items = items})
     },
-    methods: {
-        get(url) {
-            return fetch(url)
-                .then(data => data.json())
-        }
-    }
 }
 </script>
 

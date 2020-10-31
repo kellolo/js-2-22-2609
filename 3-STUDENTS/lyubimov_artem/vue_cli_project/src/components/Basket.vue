@@ -13,14 +13,19 @@
                 <div>TOTAL</div>
                 <div id="total-sum"></div>
             </div>
-            <a href="checkout.html" class="drop__link">Checkout</a>
+            <router-link :to="{name: 'Checkout'}">
+                <a href="checkout.html" class="drop__link">Checkout</a>
+            </router-link>
+            <router-link :to="{name: 'ShoppingCart'}">
             <a href="#" class="drop__link">Go to cart</a>
+            </router-link>
         </div>
         </div>
 </template>
 
 <script>
 import Item from './Item.vue'
+import $axXios from '../utils/axios'
 export default {
     components: { Item },
     data() {
@@ -32,29 +37,59 @@ export default {
         }
     },
     mounted() {
-        this.get(this.url)
+        $axXios.get(this.url)
             .then(items => 
                 {this.items = items.content})
     },
     methods: {
-        get(url) {
-            return fetch(url)
-                .then(data => data.json())
-        },
         add(item) {
             let find = this.items.find(el => el.productId == item.productId);
             if (!find) {
-                this.items.push(Object.assign({}, item, { amount: 1 }));
+                let newItem = Object.assign({}, item, { amount: 1 })
+                $axXios.post(`${this.url}`, newItem)
+                .then(status => {
+                    if(status) {
+                        this.items.push(newItem)
+                    }
+                })
+                .catch(e => {
+                    console.log(e)
+                })
+                
             } else {
-                find.amount++;
+                $axXios.put(`${this.url}/${find.productId}`, 1)
+                .then(status => {
+                    if(status) {
+                        find.amount++
+                    }
+                })
+                .catch(e => {
+                    console.log(e)
+                })
             }
         },
         remove(id) {
             let find = this.items.find(el => el.productId == id);
             if (find.amount > 1) {
-                find.amount--;
+                $axXios.put(`${this.url}/${find.productId}`, -1)
+                .then(status => {
+                    if(status) {
+                        find.amount--
+                    }
+                })
+                .catch(e => {
+                    console.log(e)
+                })
             } else {
-                this.items.splice(this.items.indexOf(find), 1);
+                $axXios.delete(`${this.url}/${find.productId}`)
+                .then(status => {
+                    if(status) {
+                        this.items.splice(this.items.indexOf(find), 1)
+                    }
+                })
+                .catch(e => {
+                    console.log(e)
+                })
             }
         }
     }

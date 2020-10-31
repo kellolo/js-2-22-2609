@@ -1,7 +1,12 @@
 <template>
     <div>
-        <HeaderProduct />
-        <div class="headerLine"></div>
+        <header class="header center">
+            <HeaderLeft />
+            <div class="header__right">
+            <Basket ref="basket"/>
+            <a class="header__link" href="#">My Account</a>
+            </div>
+        </header>
         <NavProduct />
         <NewArrivalsBg />
         <main>
