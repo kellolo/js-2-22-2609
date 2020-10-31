@@ -1,4 +1,4 @@
-# 6_vue_cli
+# project_vue_cli
 
 ## Project setup
 ```

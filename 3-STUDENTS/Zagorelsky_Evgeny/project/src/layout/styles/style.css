@@ -8,7 +8,7 @@ body {
   font-family: 'Lato', sans-serif; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none!important; }
 
 .center {
   padding: 0 calc(50% - 570px); }
@@ -185,7 +185,7 @@ a {
     margin-left: 37px;
     position: relative; }
   .header__browse {
-    padding: 10px 25px 9px 14px;
+    padding: 6px 25px 9px 14px;
     color: #222222;
     font-family: 'Lato', sans-serif;
     font-size: 14px;
@@ -240,9 +240,6 @@ a {
     .header__search img {
       transition: transform .2s linear; }
   .header__bucket {
-    padding-left: 20px;
-    padding-bottom: 20px;
-    padding-top: 30px;
     position: relative; }
     .header__bucket:hover .header__cart {
       -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
@@ -323,7 +320,9 @@ a {
   list-style-type: none;
   display: flex;
   justify-content: center;
-  position: relative; }
+  position: relative; 
+  width: 100%;
+  margin: 0;}
   .menu__list:hover .mega_menu {
     visibility: visible;
     -webkit-animation: swing-in-top-fwd 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
@@ -345,7 +344,7 @@ a {
 .promo {
   height: 613px;
   background-color: #e8e8e8;
-  background-image: url('https://raw.githubusercontent.com/kpe4et/static/master/img/JS1_shop/promo.png');
+  background-image: url('https://raw.githubusercontent.com/WallOdDeath/static/master/img/JS1_shop/promo.png');
   background-repeat: no-repeat;
   background-position: center -52px;
   display: flex;
@@ -579,7 +578,7 @@ a {
 /* SUBSCRIBE */
 .subscribe {
   margin-bottom: 110px;
-  background: url('https://raw.githubusercontent.com/kpe4et/static/master/img/JS1_shop/subscribe_main.png') center no-repeat;
+  background: url('https://raw.githubusercontent.com/WallOdDeath/static/master/img/JS1_shop/subscribe_main.png') center no-repeat;
   background-size: cover; }
   .subscribe__inner {
     display: flex; }
@@ -1669,7 +1668,6 @@ a {
       left: 90%; }
   .mega_menu--browse {
     visibility: visible;
-    display: none;
     top: 36px;
     left: 0; }
     .mega_menu--browse:before, .mega_menu--browse:after {
@@ -1709,9 +1707,9 @@ a {
   border-radius: 5px;
   background-color: #ffffff;
   position: absolute;
-  top: 73px;
-  left: 8px;
-  z-index: 1; }
+  top: 45px;
+  z-index: 5;
+  min-width: 275px; }
   .drop:before {
     content: "";
     border: 8px solid transparent;
